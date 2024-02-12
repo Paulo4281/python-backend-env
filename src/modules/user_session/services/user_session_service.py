@@ -1,5 +1,7 @@
+from src.modules.user_session.dtos.user_session_dto import UserSessionDTO
 class UserSessionService:
-    def auth() -> str:
+    def auth(data: UserSessionDTO) -> any:
         return {
-            "Message": "Approved!"
+            "name": data["name"],
+            "password": data["password"]
         }
