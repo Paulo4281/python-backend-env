@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from dotenv import load_dotenv
+import os
 
-engine = create_engine("mysql+pymysql://root:@localhost:3306/python_back_env", echo=False)
+load_dotenv()
+
+engine = create_engine(f"{os.getenv("ENGINE")}://{os.getenv("USER")}:@{os.getenv("DATABASE_HOST")}:{os.getenv("DATABASE_PORT")}/{os.getenv("DATABASE")}", echo=False)
 connection = engine.connect()
 
 Session = sessionmaker(bind=engine)
