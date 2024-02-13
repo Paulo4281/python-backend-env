@@ -14,7 +14,7 @@ class User(Base):
     age = Column(Integer, name="idade_usuario")
     created_at = Column(DateTime, name="criado_em")
 
-    def toDict(self) -> Dict:
+    def to_dict(self) -> Dict:
         return {
             "id": self.id,
             "name": self.name,
