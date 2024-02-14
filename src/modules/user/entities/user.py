@@ -25,3 +25,4 @@ class User(Base):
             "age": self.age,
             "created_at": self.created_at
         }
+            

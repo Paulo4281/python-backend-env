@@ -14,3 +14,10 @@ class UserDTO(TypedDict):
     mail: str
     password: str
     age: int
+
+class UserResponseDTO(TypedDict):
+    id_: str
+    name: str
+    mail: str
+    age: int
+    created_at: str

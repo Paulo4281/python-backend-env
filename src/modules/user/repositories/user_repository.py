@@ -1,20 +1,21 @@
 from src.modules.user.entities.user import User
-from src.modules.user.dtos.user_dto import UserDTO
+from src.modules.user.dtos.user_dto import UserDTO, UserResponseDTO
 from src.database.database_config import session
+from bcrypt import gensalt, hashpw
 from typing import List
 from uuid import uuid4
 import datetime
 
 class UserRepository:
     @staticmethod
-    def save(data: UserDTO) -> User:
+    def save(data: UserDTO) -> UserResponseDTO:
         try:
             with session.begin():
                 user = User(
                         id_ = uuid4(),
                         name = data["name"],
                         mail = data["mail"],
-                        password = data["password"],
+                        password = hashpw(data["password"].encode("utf8"), gensalt()),
                         age = data["age"],
                         created_at = datetime.datetime.now()
                 )
@@ -31,7 +32,7 @@ class UserRepository:
     def find() -> List[User]:
         try:
             with session.begin():
-                users = session.query(User)
+                users = session.query(UserResponseDTO)
 
                 users_list = []
 
@@ -45,7 +46,7 @@ class UserRepository:
             session.close()
             
     @staticmethod
-    def find_by_id(id_: str) -> User:
+    def find_by_id(id_: str) -> UserResponseDTO:
         try:
             with session.begin():
                 user = session.query(User).filter(User.id_==id_).first()
@@ -57,7 +58,7 @@ class UserRepository:
             session.close()
 
     @staticmethod
-    def find_by_mail(mail: str) -> User:
+    def __find_by_mail(mail: str) -> UserResponseDTO:
         try:
             with session.begin():
                 user = session.query(User).filter(User.mail==mail).first()

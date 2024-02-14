@@ -1,4 +1,4 @@
-from src.modules.user.dtos.user_dto import UserAuthDTO, UserDTO, UserAuthResponseDTO
+from src.modules.user.dtos.user_dto import UserAuthDTO, UserDTO, UserAuthResponseDTO, UserResponseDTO
 from src.modules.user.entities.user import User
 from src.modules.user.repositories.user_repository import UserRepository
 from typing import List
@@ -16,15 +16,15 @@ class UserService:
         }
     
     @staticmethod
-    def save(data: UserDTO) -> User:
+    def save(data: UserDTO) -> UserResponseDTO:
         return UserRepository.save(data)
     
     @staticmethod
-    def find() -> List[User]:
+    def find() -> List[UserResponseDTO]:
         return UserRepository.find()
     
     @staticmethod
-    def find_by_id(id: str) -> User:
+    def find_by_id(id: str) -> UserResponseDTO:
         user = UserRepository.find_by_id(id)
         if user:
             return user
@@ -32,7 +32,8 @@ class UserService:
     
     @staticmethod
     def find_by_mail(mail: str) -> User:
-        user = UserRepository.find_by_mail(mail)
+        user = UserRepository.__find_by_mail(mail)
+        print(user)
         if user:
             return user
         raise Exception("E-mail não cadastrado.")
