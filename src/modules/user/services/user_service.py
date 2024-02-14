@@ -7,10 +7,6 @@ class UserService:
     @staticmethod
     def auth(data: UserAuthDTO) -> UserAuthResponseDTO:
         user = UserService.find_by_mail(data["mail"])
-        print(user)
-
-        if user["password"] != data["password"]:
-            raise Exception("Senha não confere.")
 
         return {
             "name": user["name"],
@@ -37,17 +33,16 @@ class UserService:
     @staticmethod
     def find_by_mail(mail: str) -> User:
         user = UserRepository.find_by_mail(mail)
-        print(f"AQUI EM BAIXO {user}")
         if user:
             return user
         raise Exception("E-mail não cadastrado.")
     
     @staticmethod
-    def update(id: str, data: UserDTO) -> None:
-        if UserService.find_by_id(id):
-            UserRepository.update(id, data)
+    def update(id_: str, data: UserDTO) -> None:
+        if UserService.find_by_id(id_):
+            UserRepository.update(id_, data)
 
     @staticmethod
-    def delete(id: str) -> None:
-        if UserService.find_by_id(id):
-            UserRepository.delete(id)
+    def delete(id_: str) -> None:
+        if UserService.find_by_id(id_):
+            UserRepository.delete(id_)

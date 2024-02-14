@@ -1,7 +1,6 @@
 from src.modules.user.entities.user import User
 from src.modules.user.dtos.user_dto import UserDTO
 from src.database.database_config import session
-from src.utils.app_error import AppError
 from typing import List
 from uuid import uuid4
 import datetime
@@ -12,7 +11,7 @@ class UserRepository:
         try:
             with session.begin():
                 user = User(
-                        id = uuid4(),
+                        id_ = uuid4(),
                         name = data["name"],
                         mail = data["mail"],
                         password = data["password"],
@@ -23,8 +22,10 @@ class UserRepository:
                 session.add(user)
 
             return user.to_dict()
-        except Exception:
+        except:
             session.rollback()
+        finally:
+            session.close()
 
     @staticmethod
     def find() -> List[User]:
@@ -38,52 +39,51 @@ class UserRepository:
                     users_list.append(user.to_dict())
                     
             return users_list
-        except Exception:
+        except:
             session.rollback()
+        finally:
+            session.close()
             
     @staticmethod
-    def find_by_id(id: str) -> User:
+    def find_by_id(id_: str) -> User:
         try:
             with session.begin():
-                user = session.query(User).filter(User.id==id).first()
+                user = session.query(User).filter(User.id_==id_).first()
 
             return user.to_dict()
-        except Exception:
+        except:
             session.rollback()
+        finally:
+            session.close()
 
     @staticmethod
     def find_by_mail(mail: str) -> User:
         try:
-            if session.connection():
-                session.close()
             with session.begin():
                 user = session.query(User).filter(User.mail==mail).first()
 
-            session.commit()
             return user.to_dict()
-        except Exception:
+        except:
             session.rollback()
+        finally:
+            session.close()
 
     @staticmethod
-    def update(id: str, data: UserDTO) -> None:
+    def update(id_: str, data: UserDTO) -> None:
         try:
-            if session.connection():
-                session.close()
-
             with session.begin():
-                session.query(User).filter(User.id==id).update(data)
-                
-        except Exception:
+                session.query(User).filter(User.id_==id_).update(data)
+        except:
             session.rollback()
+        finally:
+            session.close()
 
     @staticmethod
-    def delete(id: str) -> None:
+    def delete(id_: str) -> None:
         try:
-            if session.connection():
-                session.close()
-
             with session.begin():
-                session.query(User).filter(User.id==id).delete()
-
-        except Exception:
+                session.query(User).filter(User.id_==id_).delete()
+        except:
             session.rollback()
+        finally:
+            session.close()

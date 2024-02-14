@@ -51,12 +51,13 @@ class UserController:
             response = HttpResponse(body=UserService.update(req.params, req.body), status_code=200)
         except Exception as exception:
             response = AppError(body=exception, status_code=400).error
-        return jsonify(response.body or "Updated!"), response.status_code
+        return jsonify(response.body), response.status_code
     
+    @staticmethod
     def delete(id: str) -> HttpResponse:
         try:
             req = HttpRequest(params=id)
             response = HttpResponse(body=UserService.delete(req.params), status_code=200)
         except Exception as exception:
             response = AppError(body=exception, status_code=400).error
-        return jsonify(response.body or "Deleted!"), response.status_code
+        return jsonify(response.body), response.status_code
