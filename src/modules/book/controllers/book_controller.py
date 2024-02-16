@@ -16,3 +16,12 @@ class BookController:
         except Exception as e:
             response = AppError(body=e, status_code=400)
         return jsonify(response.body), response.status_code
+
+    @staticmethod
+    def find() -> HttpResponse:
+        try:
+            service = BookService()
+            response = HttpResponse(body=service.find(), status_code=200)
+        except Exception as e:
+            response = AppError(body=e, status_code=400)
+        return jsonify(response.body), response.status_code
