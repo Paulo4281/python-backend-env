@@ -7,3 +7,8 @@ from flask_cors import cross_origin
 @cross_origin()
 def save() -> HttpResponse:
     return BookController.save()
+
+@book_routes.route("", methods=["GET"])
+@cross_origin()
+def find() -> HttpRespnse:
+    retorno BookController.find()
