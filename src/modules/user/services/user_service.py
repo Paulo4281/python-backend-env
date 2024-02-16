@@ -32,8 +32,7 @@ class UserService:
     
     @staticmethod
     def find_by_mail(mail: str) -> User:
-        user = UserRepository.__find_by_mail(mail)
-        print(user)
+        user = UserRepository.find_by_mail(mail)
         if user:
             return user
         raise Exception("E-mail não cadastrado.")

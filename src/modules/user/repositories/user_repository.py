@@ -58,7 +58,7 @@ class UserRepository:
             session.close()
 
     @staticmethod
-    def __find_by_mail(mail: str) -> UserResponseDTO:
+    def find_by_mail(mail: str) -> UserResponseDTO:
         try:
             with session.begin():
                 user = session.query(User).filter(User.mail==mail).first()
