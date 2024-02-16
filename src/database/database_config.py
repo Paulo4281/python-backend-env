@@ -5,7 +5,7 @@ import os
 
 load_dotenv()
 
-engine = create_engine(f"{os.getenv("ENGINE")}://{os.getenv("USER")}:@{os.getenv("DATABASE_HOST")}:{os.getenv("DATABASE_PORT")}/{os.getenv("DATABASE_NAME")}", echo=False)
+engine = create_engine(f"{os.getenv("ENGINE")}://{os.getenv("DATABASE_USER")}:@{os.getenv("DATABASE_HOST")}:{os.getenv("DATABASE_PORT")}/{os.getenv("DATABASE_NAME")}", echo=False)
 connection = engine.connect()
 
 Session = sessionmaker(bind=engine)

@@ -19,5 +19,6 @@ class UserResponseDTO(TypedDict):
     id_: str
     name: str
     mail: str
+    password: str
     age: int
     created_at: str

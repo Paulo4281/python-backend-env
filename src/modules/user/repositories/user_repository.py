@@ -4,7 +4,7 @@ from src.database.database_config import session
 from bcrypt import gensalt, hashpw
 from typing import List
 from uuid import uuid4
-import datetime
+from datetime import datetime
 
 class UserRepository:
     @staticmethod
@@ -17,7 +17,7 @@ class UserRepository:
                         mail = data["mail"],
                         password = hashpw(data["password"].encode("utf8"), gensalt()),
                         age = data["age"],
-                        created_at = datetime.datetime.now()
+                        created_at = datetime.now()
                 )
 
                 session.add(user)
@@ -32,13 +32,12 @@ class UserRepository:
     def find() -> List[User]:
         try:
             with session.begin():
-                users = session.query(UserResponseDTO)
-
+                users = session.query(User)
+                
                 users_list = []
 
                 for user in users:
                     users_list.append(user.to_dict())
-                    
             return users_list
         except:
             session.rollback()

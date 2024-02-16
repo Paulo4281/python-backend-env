@@ -4,8 +4,8 @@ import os
 
 load_dotenv()
 
-HOST = os.getenv("HOST")
-PORT = os.getenv("PORT")
+HOST = os.getenv("SERVER_HOST")
+PORT = os.getenv("SERVER_PORT")
 DEBUG = True
 
 if __name__ == "__main__":

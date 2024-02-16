@@ -1,7 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Integer, String, DateTime
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
+from sqlalchemy.orm import Mapped, mapped_column
 from typing import Dict
 
 Base = declarative_base()
@@ -9,7 +8,7 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = "tb_usuario"
 
-    id_: Mapped[str] = mapped_column(primary_key=True, name="id_usuario")
+    id_: Mapped[str] = mapped_column(primary_key=True, type_=String, name="id_usuario")
     name: Mapped[str] = mapped_column(type_=String, name="nome_usuario")
     mail: Mapped[str] = mapped_column(type_=String, name="email_usuario")
     password: Mapped[str] = mapped_column(type_=String, name="senha_usuario")
