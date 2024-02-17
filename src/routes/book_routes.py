@@ -10,5 +10,5 @@ def save() -> HttpResponse:
 
 @book_routes.route("", methods=["GET"])
 @cross_origin()
-def find() -> HttpRespnse:
-    retorno BookController.find()
+def find() -> HttpResponse:
+    return BookController.find()
