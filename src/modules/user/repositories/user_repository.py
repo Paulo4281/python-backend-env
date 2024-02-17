@@ -1,5 +1,5 @@
 from src.modules.user.entities.user import User
-from src.modules.user.dtos.user_dto import UserDTO, UserResponseDTO
+from src.modules.user.dtos.user_dto import UserDTO, UserResponseDTO, UserUpdateDTO
 from src.database.database_config import session
 from bcrypt import gensalt, hashpw
 from typing import List
@@ -69,7 +69,7 @@ class UserRepository:
             session.close()
 
     @staticmethod
-    def update(id_: str, data: UserDTO) -> None:
+    def update(id_: str, data: UserUpdateDTO) -> None:
         try:
             with session.begin():
                 session.query(User).filter(User.id_==id_).update(data)

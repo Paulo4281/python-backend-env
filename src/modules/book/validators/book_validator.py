@@ -9,8 +9,8 @@ class BookValidator:
             "title": {"type": "string", "required": True, "empty": False},
             "price": {"type": "float", "required": True, "empty": False, "min": 0.01},
             "rate": {"type": "integer", "required": False, "empty": False, "max": 5},
-            "category": {"type": "string", "required": True, "empty": False},
-            "owner": {"type": "string", "required": True, "empty": False}
+            "category_id": {"type": "string", "required": True, "empty": False},
+            "owner_id": {"type": "string", "required": True, "empty": False}
         })
         try:
             ApiDataValidator(book_dto_validator, data.body)

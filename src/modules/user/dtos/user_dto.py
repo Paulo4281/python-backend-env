@@ -9,6 +9,7 @@ class UserAuthResponseDTO(TypedDict):
     mail: str
     age: int
     message: str
+
 class UserDTO(TypedDict):
     name: str
     mail: str
@@ -22,3 +23,6 @@ class UserResponseDTO(TypedDict):
     password: str
     age: int
     created_at: str
+
+class UserUpdateDTO(UserDTO):
+    pass

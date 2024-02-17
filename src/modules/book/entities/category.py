@@ -1,9 +1,7 @@
-from sqlalchemy.ext.declarative import declarative_base
+from src.database.base import Base
 from sqlalchemy import String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 from typing import Dict
-
-Base = declarative_base()
 
 class Category(Base):
     __tablename__ = "tb_categoria"

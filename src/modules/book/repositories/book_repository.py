@@ -1,6 +1,6 @@
 from src.modules.book.entities.book import Book
 from src.database.database_config import session
-from src.modules.book.dtos.book_dto import BookDTO, BookResponseDTO
+from src.modules.book.dtos.book_dto import BookDTO, BookResponseDTO, BookUpdateDTO
 from uuid import uuid4
 from datetime import datetime
 from typing import List
@@ -15,16 +15,17 @@ class BookRepository:
                     title = data["title"],
                     price = data["price"],
                     rate = data["rate"],
-                    category = data["category"],
-                    owner = data["owner"],
+                    category_id = data["category_id"],
+                    owner_id = data["owner_id"],
                     created_at = datetime.now()
                 )
 
                 session.add(book)
 
             return book.to_dict()
-        except:
+        except Exception as e:
             session.rollback()
+            raise Exception(e)
         finally:
             session.close()
 

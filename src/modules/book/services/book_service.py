@@ -1,4 +1,4 @@
-from src.modules.book.dtos.book_dto import BookDTO, BookResponseDTO
+from src.modules.book.dtos.book_dto import BookDTO, BookResponseDTO, BookUpdateDTO
 from src.modules.book.repositories.book_repository import BookRepository
 from typing import List
 

@@ -1,4 +1,4 @@
-from src.modules.user.dtos.user_dto import UserAuthDTO, UserDTO, UserAuthResponseDTO, UserResponseDTO
+from src.modules.user.dtos.user_dto import UserAuthDTO, UserDTO, UserAuthResponseDTO, UserResponseDTO, UserUpdateDTO
 from src.modules.user.entities.user import User
 from src.modules.user.repositories.user_repository import UserRepository
 from typing import List
@@ -38,7 +38,7 @@ class UserService:
         raise Exception("E-mail não cadastrado.")
     
     @staticmethod
-    def update(id_: str, data: UserDTO) -> None:
+    def update(id_: str, data: UserUpdateDTO) -> None:
         if UserService.find_by_id(id_):
             UserRepository.update(id_, data)
 
