@@ -1,5 +1,5 @@
 from src.database.base import Base
-from sqlalchemy import DECIMAL, String, Integer, DateTime, ForeignKey
+from sqlalchemy import DECIMAL, String, INTEGER, DATETIME, DateTime, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from typing import Dict
 from src.modules.book.entities.category import Category
@@ -12,8 +12,8 @@ class Book(Base):
     id_: Mapped[str] = mapped_column(primary_key=True, type_=String, name="id_livro")
     title: Mapped[str] = mapped_column(type_=String, name="titulo_livro")
     price: Mapped[float] = mapped_column(type_=DECIMAL, name="preco_livro")
-    rate: Mapped[int] = mapped_column(type_=Integer, name="avaliacao_livro")
-    created_at: Mapped[DateTime] = mapped_column(type_=DateTime, name="criado_em")
+    rate: Mapped[int] = mapped_column(type_=INTEGER, name="avaliacao_livro")
+    created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="criado_em")
     category_id: Mapped[str] = mapped_column(ForeignKey("tb_categoria.id_categoria"), type_=String, name="id_categoria")
     owner_id: Mapped[str] = mapped_column(ForeignKey("tb_usuario.id_usuario"), type_=String, name="id_usuario")
 
