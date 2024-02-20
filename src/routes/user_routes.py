@@ -18,17 +18,17 @@ def save() -> HttpResponse:
 def find() -> HttpResponse:
     return UserController.find()
 
-@user_routes.route("/<id>", methods=["GET"])
+@user_routes.route("/<id_>", methods=["GET"])
 @cross_origin()
-def find_by_id(id: str) -> HttpResponse:
-    return UserController.find_by_id(id)
+def find_by_id(id_: str) -> HttpResponse:
+    return UserController.find_by_id(id_)
 
-@user_routes.route("/<id>", methods=["PATCH"])
+@user_routes.route("/<id_>", methods=["PATCH"])
 @cross_origin()
-def update(id: str) -> HttpResponse:
-    return UserController.update(id)
+def update(id_: str) -> HttpResponse:
+    return UserController.update(id_)
 
-@user_routes.route("/<id>", methods=["DELETE"])
+@user_routes.route("/<id_>", methods=["DELETE"])
 @cross_origin()
-def delete(id: str) -> HttpResponse:
-    return UserController.delete(id)
+def delete(id_: str) -> HttpResponse:
+    return UserController.delete(id_)

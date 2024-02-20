@@ -35,18 +35,18 @@ class UserController:
         return jsonify(response.body), response.status_code
     
     @staticmethod
-    def find_by_id(id: str) -> HttpResponse:
+    def find_by_id(id_: str) -> HttpResponse:
         try:
-            req = HttpRequest(params=id)
+            req = HttpRequest(params=id_)
             response = HttpResponse(body=UserService.find_by_id(req.params), status_code=200)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
     
     @staticmethod
-    def update(id: str) -> HttpResponse:
+    def update(id_: str) -> HttpResponse:
         try:
-            req = HttpRequest(params=id, body=request.json)
+            req = HttpRequest(params=id_, body=request.json)
             UserValidator().user_dto_validator(req)
             response = HttpResponse(body=UserService.update(req.params, req.body), status_code=200)
         except Exception as e:
@@ -54,9 +54,9 @@ class UserController:
         return jsonify(response.body), response.status_code
     
     @staticmethod
-    def delete(id: str) -> HttpResponse:
+    def delete(id_: str) -> HttpResponse:
         try:
-            req = HttpRequest(params=id)
+            req = HttpRequest(params=id_)
             response = HttpResponse(body=UserService.delete(req.params), status_code=200)
         except Exception as e:
             response = AppError(body=e, status_code=400).error

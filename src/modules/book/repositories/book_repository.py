@@ -44,3 +44,35 @@ class BookRepository:
             session.rollback()
         finally:
             session.close()
+
+    @staticmethod
+    def find_by_id(id_: str) -> BookResponseDTO:
+        try:
+            with session.begin():
+                book = session.query(Book).filter(Book.id_ == id_).first()
+
+                return book.to_dict()
+        except:
+            session.rollback()
+        finally:
+            session.close()
+
+    @staticmethod
+    def update(id_: str, data: BookUpdateDTO) -> None:
+        try:
+            with session.begin():
+                session.query(Book).filter(Book.id_ == id_).update(data)
+        except:
+            session.rollback()
+        finally:
+            session.close()
+
+    @staticmethod
+    def delete(id_: str) -> None:
+        try:
+            with session.begin():
+                session.query(Book).filter(Book.id_ == id_).delete()
+        except:
+            session.rollback()
+        finally:
+            session.close()

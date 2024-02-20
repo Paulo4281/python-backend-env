@@ -10,3 +10,15 @@ class BookService:
     @staticmethod
     def find() -> List[BookResponseDTO]:
         return BookRepository.find()
+    
+    @staticmethod
+    def find_by_id(id_: str) -> BookResponseDTO:
+        return BookRepository.find_by_id(id_)
+    
+    @staticmethod
+    def update(id_: str, data: BookUpdateDTO) -> None:
+        return BookRepository.update(id_, data)
+    
+    @staticmethod
+    def delete(id_: str) -> None:
+        return BookRepository.delete(id_)
