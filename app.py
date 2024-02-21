@@ -9,4 +9,4 @@ PORT = os.getenv("SERVER_PORT")
 DEBUG = True
 
 if __name__ == "__main__":
-    app.run(host=HOST, port=PORT, debug=DEBUG)
+    app.run(host=HOST, port=PORT, debug=DEBUG, threaded=True)
