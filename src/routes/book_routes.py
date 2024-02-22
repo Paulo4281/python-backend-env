@@ -18,7 +18,7 @@ def find() -> HttpResponse:
 def find_by_id(id_: str) -> HttpResponse:
     return BookController.find_by_id(id_)
 
-@book_routes.route("/<id_>", methods=["PATCH"])
+@book_routes.route("/<id_>", methods=["PUT"])
 @cross_origin()
 def update(id_: str) -> HttpResponse:
     return BookController.update(id_)

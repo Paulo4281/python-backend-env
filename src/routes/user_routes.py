@@ -23,7 +23,7 @@ def find() -> HttpResponse:
 def find_by_id(id_: str) -> HttpResponse:
     return UserController.find_by_id(id_)
 
-@user_routes.route("/<id_>", methods=["PATCH"])
+@user_routes.route("/<id_>", methods=["PUT"])
 @cross_origin()
 def update(id_: str) -> HttpResponse:
     return UserController.update(id_)

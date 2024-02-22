@@ -18,7 +18,7 @@ def find() -> HttpResponse:
 def find_by_id(id_: str) -> HttpResponse:
     return CategoryController.find_by_id(id_)
 
-@category_routes.route("/<id_>", methods=["PATCH"])
+@category_routes.route("/<id_>", methods=["PUT"])
 @cross_origin()
 def update(id_: str) -> HttpResponse:
     return CategoryController.update(id_)

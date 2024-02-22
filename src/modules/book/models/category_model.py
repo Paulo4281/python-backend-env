@@ -4,6 +4,12 @@ class CategoryModel:
     def __init__(self, namespace):
         self.namespace = namespace
 
+    def save(self):
+        data_model = {
+            "name": fields.String()
+        }
+        return self.namespace.model("save", data_model)
+
     def find(self):
         return self.namespace.model("find", self.find_by_id())
 
@@ -14,3 +20,6 @@ class CategoryModel:
             "created_at": fields.DateTime()
         }
         return self.namespace.model("find_by_id", data_model)
+    
+    def update(self):
+        return self.namespace.model("update", self.save())
