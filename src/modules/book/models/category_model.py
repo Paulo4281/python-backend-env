@@ -5,12 +5,7 @@ class CategoryModel:
         self.namespace = namespace
 
     def find(self):
-        data_model = {
-            "data": fields.List(
-                fields.Nested(self.find_by_id())
-            )
-        }
-        return self.namespace.model("find", data_model)
+        return self.namespace.model("find", self.find_by_id())
 
     def find_by_id(self):
         data_model = {
