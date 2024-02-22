@@ -8,9 +8,9 @@ from src.database.database_config import *
 import os
 from dotenv import load_dotenv
 from src.docs.modules.book.category_docs import api as category_namespace
+from src.docs.modules.book.book_docs import api as book_namespace
 
 load_dotenv()
-
 
 # ------------------------------------------------------------------------------------------------------------------
 # App Server & Cors ------------------------------------------------------------------------------------------------------------------
@@ -64,6 +64,7 @@ api = Api(
 
     # Book Namespaces
 api.add_namespace(category_namespace, path="/book/category")
+api.add_namespace(book_namespace, path="/book")
 
 # ------------------------------------------------------------------------------------------------------------------
 # API Init ------------------------------------------------------------------------------------------------------------------

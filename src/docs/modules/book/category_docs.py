@@ -10,26 +10,26 @@ class CategoryResource(Resource):
     @api.expect(category_model.save())
     @api.marshal_with(category_model.find(), description="Created", code=201)
     @staticmethod
-    def post():
+    def post() -> None:
         pass
 
     @api.marshal_with(category_model.find(), as_list=True)
     @staticmethod
-    def get():
+    def get() -> None:
         pass
 
 @api.route("/<id_>")
 class CategoryResource(Resource):
     @api.marshal_with(category_model.find_by_id())
     @staticmethod
-    def get():
+    def get() -> None:
         pass
 
     @api.expect(category_model.update())
     @staticmethod
-    def put():
+    def put() -> None:
         pass
 
     @staticmethod
-    def delete():
+    def delete() -> None:
         pass

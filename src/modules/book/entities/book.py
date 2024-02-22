@@ -13,9 +13,9 @@ class Book(Base):
     title: Mapped[str] = mapped_column(type_=String, name="titulo_livro")
     price: Mapped[float] = mapped_column(type_=DECIMAL, name="preco_livro")
     rate: Mapped[int] = mapped_column(type_=INTEGER, name="avaliacao_livro")
-    created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="criado_em")
     category_id: Mapped[str] = mapped_column(ForeignKey("tb_categoria.id_categoria"), type_=String, name="id_categoria")
     owner_id: Mapped[str] = mapped_column(ForeignKey("tb_usuario.id_usuario"), type_=String, name="id_usuario")
+    created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="criado_em")
 
     category: Mapped[Category] = relationship("Category", foreign_keys=[category_id])
     owner: Mapped[User] = relationship("User", foreign_keys=[owner_id])
