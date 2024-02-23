@@ -26,10 +26,12 @@ class CategoryResource(Resource):
         pass
 
     @api.expect(category_model.update())
+    @api.marshal_with(fields=None, description="No Content", code=204)
     @staticmethod
     def put() -> None:
         pass
 
     @staticmethod
+    @api.marshal_with(fields=None, description="No Content", code=204)
     def delete() -> None:
         pass

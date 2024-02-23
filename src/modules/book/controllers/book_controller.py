@@ -12,7 +12,7 @@ class BookController:
             req = HttpRequest(body=request.json)
             BookValidator().book_dto_validator(req)
             service = BookService()
-            response = HttpResponse(body=service.save(req.body), status_code=200)
+            response = HttpResponse(body=service.save(req.body), status_code=201)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -42,7 +42,7 @@ class BookController:
             req = HttpRequest(params=id_, body=request.json)
             BookValidator().book_dto_validator(req)
             service = BookService()
-            response = HttpResponse(body=service.update(req.params, req.body), status_code=200)
+            response = HttpResponse(body=service.update(req.params, req.body), status_code=204)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -52,7 +52,7 @@ class BookController:
         try:
             req = HttpRequest(params=id_)
             service = BookService()
-            response = HttpResponse(body=service.delete(req.params), status_code=200)
+            response = HttpResponse(body=service.delete(req.params), status_code=204)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code

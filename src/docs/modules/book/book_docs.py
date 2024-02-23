@@ -17,3 +17,21 @@ class BookResource(Resource):
     @staticmethod
     def get() -> None:
         pass
+
+@api.route("/<id_>")
+class BookResource(Resource):
+    @api.marshal_with(book_model.find_by_id())
+    @staticmethod
+    def get() -> None:
+        pass
+
+    @api.expect(book_model.update())
+    @api.marshal_with(fields=None, description="No Content", code=204)
+    @staticmethod
+    def put() -> None:
+        pass
+
+    @api.marshal_with(fields=None, description="No Content", code=204)
+    @staticmethod
+    def delete() -> None:
+        pass

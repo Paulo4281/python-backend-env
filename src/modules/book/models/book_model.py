@@ -29,3 +29,6 @@ class BookModel:
             "created_at": fields.DateTime()
         }
         return self.namespace.model("find_by_id", data_model)
+    
+    def update(self) -> Any:
+        return self.namespace.model("update", self.save())
