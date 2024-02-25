@@ -8,19 +8,19 @@ book_model = BookModel(api)
 @api.route("/")
 class BookResource(Resource):
     @api.expect(book_model.save())
-    @api.marshal_with(book_model.find(), description="Created", code=201)
+    @api.marshal_with(fields=book_model.find(), description="Created", code=201)
     @staticmethod
     def post() -> None:
         pass
 
-    @api.marshal_with(book_model.find(), as_list=True)
+    @api.marshal_with(fields=book_model.find(), as_list=True)
     @staticmethod
     def get() -> None:
         pass
 
 @api.route("/<id_>")
-class BookResource(Resource):
-    @api.marshal_with(book_model.find_by_id())
+class BookResourceDetail(Resource):
+    @api.marshal_with(fields=book_model.find_by_id())
     @staticmethod
     def get() -> None:
         pass

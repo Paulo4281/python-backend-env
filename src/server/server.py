@@ -9,6 +9,7 @@ import os
 from dotenv import load_dotenv
 from src.docs.modules.book.category_docs import api as category_namespace
 from src.docs.modules.book.book_docs import api as book_namespace
+from src.docs.modules.user.user_docs import api as user_namespace
 
 load_dotenv()
 
@@ -61,6 +62,9 @@ api = Api(
 
 # ------------------------------------------------------------------------------------------------------------------
 # API Namespaces ------------------------------------------------------------------------------------------------------------------
+
+    # User Namespaces
+api.add_namespace(user_namespace, path="/user")
 
     # Book Namespaces
 api.add_namespace(category_namespace, path="/book/category")

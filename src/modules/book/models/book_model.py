@@ -13,14 +13,14 @@ class BookModel:
             "category_id": fields.String(),
             "owner_id": fields.String()
         }
-        return self.namespace.model("save", data_model)
+        return self.namespace.model("book_save", data_model)
 
     def find(self) -> Any:
-        return self.namespace.model("find", self.find_by_id())
+        return self.namespace.model("book_find", self.find_by_id())
 
     def find_by_id(self) -> Any:
         data_model = {
-            "id": fields.String(),
+            "id_": fields.String(),
             "title": fields.String(),
             "price": fields.Float(),
             "rate": fields.Integer(),
@@ -28,7 +28,7 @@ class BookModel:
             "owner_id": fields.String(),
             "created_at": fields.DateTime()
         }
-        return self.namespace.model("find_by_id", data_model)
+        return self.namespace.model("book_find_by_id", data_model)
     
     def update(self) -> Any:
-        return self.namespace.model("update", self.save())
+        return self.namespace.model("book_update", self.save())

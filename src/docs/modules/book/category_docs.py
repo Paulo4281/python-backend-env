@@ -8,19 +8,19 @@ category_model = CategoryModel(api)
 @api.route("/")
 class CategoryResource(Resource):
     @api.expect(category_model.save())
-    @api.marshal_with(category_model.find(), description="Created", code=201)
+    @api.marshal_with(fields=category_model.find(), description="Created", code=201)
     @staticmethod
     def post() -> None:
         pass
 
-    @api.marshal_with(category_model.find(), as_list=True)
+    @api.marshal_with(fields=category_model.find(), as_list=True)
     @staticmethod
     def get() -> None:
         pass
 
 @api.route("/<id_>")
-class CategoryResource(Resource):
-    @api.marshal_with(category_model.find_by_id())
+class CategoryResourceDetail(Resource):
+    @api.marshal_with(fields=category_model.find_by_id())
     @staticmethod
     def get() -> None:
         pass

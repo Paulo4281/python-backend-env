@@ -16,7 +16,7 @@ class UserRepository:
                         name = data["name"],
                         mail = data["mail"],
                         password = hashpw(data["password"].encode("utf8"), gensalt()),
-                        age = data["age"],
+                        birth = data["birth"],
                         created_at = datetime.now()
                 )
 
