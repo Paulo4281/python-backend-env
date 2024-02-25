@@ -1,5 +1,5 @@
 from src.modules.user.entities.user import User
-from src.modules.user.dtos.user_dto import UserDTO, UserResponseDTO, UserUpdateDTO
+from src.modules.user.dtos.user_dto import UserDTO, UserResponseDTO, UserUpdateDTO, UserPasswordResponseDTO
 from src.database.database_config import session
 from bcrypt import gensalt, hashpw
 from typing import List
@@ -63,6 +63,18 @@ class UserRepository:
                 user = session.query(User).filter(User.mail==mail).first()
 
             return user.to_dict()
+        except:
+            session.rollback()
+        finally:
+            session.close()
+
+    @staticmethod
+    def get_user_password(id_: str) -> UserPasswordResponseDTO:
+        try:
+            with session.begin():
+                user_password = session.query(User).filter(User.id_ == id_).first().password
+
+            return user_password
         except:
             session.rollback()
         finally:

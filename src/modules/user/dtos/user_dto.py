@@ -6,10 +6,7 @@ class UserAuthDTO(TypedDict):
     password: str
 
 class UserAuthResponseDTO(TypedDict):
-    name: str
-    mail: str
-    birth: date
-    message: str
+    token: str
 
 class UserDTO(TypedDict):
     name: str
@@ -24,6 +21,9 @@ class UserResponseDTO(TypedDict):
     password: str
     birth: date
     created_at: str
+
+class UserPasswordResponseDTO(TypedDict):
+    password: str
 
 class UserUpdateDTO(UserDTO):
     pass
