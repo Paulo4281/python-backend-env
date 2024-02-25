@@ -39,7 +39,7 @@ class BookRepository:
 
                 for book in books:
                     books_list.append(book.to_dict())
-                return books_list
+            return books_list
         except:
             session.rollback()
         finally:
@@ -51,7 +51,7 @@ class BookRepository:
             with session.begin():
                 book = session.query(Book).filter(Book.id_ == id_).first()
 
-                return book.to_dict()
+            return book.to_dict()
         except:
             session.rollback()
         finally:

@@ -11,7 +11,8 @@ class UserController:
         try:
             req = HttpRequest(body=request.json)
             UserValidator().user_auth_dto_validator(req)
-            response = HttpResponse(body=UserService.auth(req.body), status_code=200)
+            service = UserService()
+            response = HttpResponse(body=service.auth(req.body), status_code=200)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -21,7 +22,8 @@ class UserController:
         try:
             req = HttpRequest(body=request.json)
             UserValidator().user_dto_validator(req)
-            response = HttpResponse(body=UserService.save(req.body), status_code=201)
+            service = UserService()
+            response = HttpResponse(body=service.save(req.body), status_code=201)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -29,7 +31,8 @@ class UserController:
     @staticmethod
     def find() -> HttpResponse:
         try:
-            response = HttpResponse(body=UserService.find(), status_code=200)
+            service = UserService()
+            response = HttpResponse(body=service.find(), status_code=200)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -38,7 +41,8 @@ class UserController:
     def find_by_id(id_: str) -> HttpResponse:
         try:
             req = HttpRequest(params=id_)
-            response = HttpResponse(body=UserService.find_by_id(req.params), status_code=200)
+            service = UserService()
+            response = HttpResponse(body=service.find_by_id(req.params), status_code=200)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -48,7 +52,8 @@ class UserController:
         try:
             req = HttpRequest(params=id_, body=request.json)
             UserValidator().user_dto_validator(req)
-            response = HttpResponse(body=UserService.update(req.params, req.body), status_code=204)
+            service = UserService()
+            response = HttpResponse(body=service.update(req.params, req.body), status_code=204)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -57,7 +62,8 @@ class UserController:
     def delete(id_: str) -> HttpResponse:
         try:
             req = HttpRequest(params=id_)
-            response = HttpResponse(body=UserService.delete(req.params), status_code=204)
+            service = UserService()
+            response = HttpResponse(body=service.delete(req.params), status_code=204)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code

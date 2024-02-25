@@ -35,7 +35,7 @@ class CategoryRepository:
                 for category in categories:
                     categories_list.append(category.to_dict())
 
-                return categories_list
+            return categories_list
         except:
             session.rollback()
         finally:
@@ -47,7 +47,7 @@ class CategoryRepository:
             with session.begin():
                 category = session.query(Category).filter(Category.id_ == id_).first()
 
-                return category.to_dict()
+            return category.to_dict()
         except:
             session.rollback()
         finally:

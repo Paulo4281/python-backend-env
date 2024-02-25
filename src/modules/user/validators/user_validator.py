@@ -18,9 +18,9 @@ class UserValidator:
     def user_dto_validator(data: HttpRequest) -> None:
         user_dto_validator = Validator({
             "name": { "type": "string", "required": True, "empty": False },
-            "mail": { "type": "string", "required": False, "empty": True },
+            "mail": { "type": "string", "required": True, "empty": False },
             "password": { "type": "string", "required": True, "empty": False },
-            "age": { "type": "integer", "required": False, "empty": True }
+            "birth": { "type": "string", "required": False, "empty": False }
         })
         try:
             ApiDataValidator(user_dto_validator, data.body)
