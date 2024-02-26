@@ -5,7 +5,7 @@ from src.routes.category_routes import category_routes
 from flask_cors import CORS
 from flask_restx import Api
 from src.database.database_config import *
-import os
+from os import getenv
 from dotenv import load_dotenv
 from src.docs.modules.book.category_docs import api as category_namespace
 from src.docs.modules.book.book_docs import api as book_namespace

@@ -1,11 +1,11 @@
 from src.server.server import app
 from dotenv import load_dotenv
-import os
+from os import getenv
 
 load_dotenv()
 
-HOST = os.getenv("SERVER_HOST")
-PORT = os.getenv("SERVER_PORT")
+HOST = getenv("SERVER_HOST")
+PORT = getenv("SERVER_PORT")
 DEBUG = True
 
 if __name__ == "__main__":

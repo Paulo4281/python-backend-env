@@ -3,6 +3,12 @@ from src.modules.user.entities.user import User
 from src.modules.user.repositories.user_repository import UserRepository
 from typing import List
 from bcrypt import checkpw
+from jwt import encode
+from dotenv import load_dotenv
+from os import getenv
+from datetime import datetime, timezone, timedelta
+
+load_dotenv()
 
 class UserService:
     @staticmethod
@@ -11,7 +17,7 @@ class UserService:
         user_password = UserRepository.get_user_password(user["id_"])
         if checkpw(bytes(data["password"], "utf8"), bytes(user_password, "utf8")):
             return {
-                "token": ""
+                "token": encode(payload={"iat": datetime.now(tz=timezone.utc), "exp": datetime.now(tz=timezone.utc) + timedelta(days=1)}, key=getenv("TOKEN_SECRET"))
             }
         else:
             raise Exception("E-mail ou senha incorretos.")
