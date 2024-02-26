@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 from src.docs.modules.book.category_docs import api as category_namespace
 from src.docs.modules.book.book_docs import api as book_namespace
 from src.docs.modules.user.user_docs import api as user_namespace
+from flask_jwt_extended import JWTManager
 
 load_dotenv()
 
@@ -40,12 +41,17 @@ app.register_blueprint(category_routes)
 # ------------------------------------------------------------------------------------------------------------------
 # App Config Credentials ------------------------------------------------------------------------------------------------------------------
 
-app.config["CORS_HEADERS"] = os.getenv("APP_CORS_HEADERS")
-app.config["SECRET_KEY"] = os.getenv("APP_SECRET_KEY")
+app.config["CORS_HEADERS"] = getenv("APP_CORS_HEADERS")
+app.config["SECRET_KEY"] = getenv("APP_SECRET_KEY")
 app.config["RESTX_MASK_SWAGGER"] = False
+app.config["JWT_SECRET_KEY"] = getenv("TOKEN_SECRET")
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
+
+# JWT Manager
+
+JWTManager(app)
 
 # ------------------------------------------------------------------------------------------------------------------
 # API Config ------------------------------------------------------------------------------------------------------------------

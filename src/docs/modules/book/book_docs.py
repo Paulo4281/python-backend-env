@@ -1,10 +1,11 @@
 from flask_restx import Namespace, Resource
 from src.modules.book.models.book_model import BookModel
+from src.utils.app_docs_auth import authorizations
 
-api = Namespace("Book")
-
+api = Namespace("Book", authorizations=authorizations)
 book_model = BookModel(api)
 
+@api.doc(security="jsonwebtoken")
 @api.route("/")
 class BookResource(Resource):
     @api.expect(book_model.save())
@@ -18,6 +19,7 @@ class BookResource(Resource):
     def get() -> None:
         pass
 
+@api.doc(security="jsonwebtoken")
 @api.route("/<id_>")
 class BookResourceDetail(Resource):
     @api.marshal_with(fields=book_model.find_by_id())

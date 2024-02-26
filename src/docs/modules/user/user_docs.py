@@ -1,8 +1,8 @@
 from flask_restx import Namespace, Resource
 from src.modules.user.models.user_model import UserModel
+from src.utils.app_docs_auth import authorizations
 
-api = Namespace("User")
-
+api = Namespace("User", authorizations=authorizations)
 user_model = UserModel(api)
 
 @api.route("/auth")
@@ -13,6 +13,7 @@ class UserResourceAuth(Resource):
     def post() -> None:
         pass
 
+@api.doc(security="jsonwebtoken")
 @api.route("/")
 class UserResource(Resource):
     @api.expect(user_model.save())
@@ -26,6 +27,7 @@ class UserResource(Resource):
     def get() -> None:
         pass
 
+@api.doc(security="jsonwebtoken")
 @api.route("/<id_>")
 class UserResourceDetail(Resource):
     @api.marshal_with(fields=user_model.find_by_id())

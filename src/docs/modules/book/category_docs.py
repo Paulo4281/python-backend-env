@@ -1,10 +1,11 @@
 from flask_restx import Namespace, Resource
 from src.modules.book.models.category_model import CategoryModel
+from src.utils.app_docs_auth import authorizations
 
-api = Namespace("Category")
-
+api = Namespace("Category", authorizations=authorizations)
 category_model = CategoryModel(api)
 
+@api.doc(security="jsonwebtoken")
 @api.route("/")
 class CategoryResource(Resource):
     @api.expect(category_model.save())
@@ -18,6 +19,7 @@ class CategoryResource(Resource):
     def get() -> None:
         pass
 
+@api.doc(security="jsonwebtoken")
 @api.route("/<id_>")
 class CategoryResourceDetail(Resource):
     @api.marshal_with(fields=category_model.find_by_id())
