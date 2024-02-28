@@ -8,11 +8,13 @@ class Category(Base):
 
     id_: Mapped[str] = mapped_column(primary_key=True, type_=String, name="id_categoria")
     name: Mapped[str] = mapped_column(type_=String, name="nome_categoria")
+    updated_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="atualizado_em")
     created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="criado_em")
 
     def to_dict(self) -> Dict:
         return {
             "id_": self.id_,
             "name": self.name,
+            "updated_at": self.updated_at,
             "created_at": self.created_at
         }

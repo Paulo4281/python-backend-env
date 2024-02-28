@@ -1,5 +1,4 @@
 from src.modules.user.dtos.user_dto import UserAuthDTO, UserDTO, UserAuthResponseDTO, UserResponseDTO, UserUpdateDTO
-from src.modules.user.entities.user import User
 from src.modules.user.repositories.user_repository import UserRepository
 from typing import List
 from bcrypt import checkpw

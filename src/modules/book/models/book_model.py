@@ -26,6 +26,7 @@ class BookModel:
             "rate": fields.Integer(),
             "category_id": fields.String(),
             "owner_id": fields.String(),
+            "updated_at": fields.DateTime(),
             "created_at": fields.DateTime()
         }
         return self.namespace.model("book_find_by_id", data_model)

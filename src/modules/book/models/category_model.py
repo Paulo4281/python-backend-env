@@ -18,6 +18,7 @@ class CategoryModel:
         data_model = {
             "id_": fields.String(),
             "name": fields.String(),
+            "updated_at": fields.DateTime(),
             "created_at": fields.DateTime()
         }
         return self.namespace.model("category_find_by_id", data_model)

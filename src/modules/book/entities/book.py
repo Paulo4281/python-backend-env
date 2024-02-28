@@ -15,6 +15,7 @@ class Book(Base):
     rate: Mapped[int] = mapped_column(type_=INTEGER, name="avaliacao_livro")
     category_id: Mapped[str] = mapped_column(ForeignKey("tb_categoria.id_categoria"), type_=String, name="id_categoria")
     owner_id: Mapped[str] = mapped_column(ForeignKey("tb_usuario.id_usuario"), type_=String, name="id_usuario")
+    updated_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="atualizado_em")
     created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="criado_em")
 
     category: Mapped[Category] = relationship("Category", foreign_keys=[category_id])
@@ -28,5 +29,6 @@ class Book(Base):
             "rate": self.rate,
             "category_id": self.category_id,
             "owner_id": self.owner_id,
+            "updated_at": self.updated_at,
             "created_at": self.created_at,
         }

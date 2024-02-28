@@ -1,4 +1,5 @@
 from typing import TypedDict
+from datetime import datetime
 
 class BookDTO(TypedDict):
     title: str
@@ -14,7 +15,8 @@ class BookResponseDTO(TypedDict):
     rate: int
     category_id: str
     owner_id: str
-    created_at: str
+    updated_at: datetime
+    created_at: datetime
 
 class BookUpdateDTO(BookDTO):
     pass

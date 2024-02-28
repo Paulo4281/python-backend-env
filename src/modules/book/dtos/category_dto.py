@@ -1,4 +1,5 @@
 from typing import TypedDict
+from datetime import datetime
 
 class CategoryDTO(TypedDict):
     name: str
@@ -6,7 +7,8 @@ class CategoryDTO(TypedDict):
 class CategoryResponseDTO(TypedDict):
     id_: str
     name: str
-    created_at: str
+    updated_at: datetime
+    created_at: datetime
 
 class CategoryUpdateDTO(CategoryDTO):
     pass

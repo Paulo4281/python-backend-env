@@ -1,5 +1,5 @@
 from typing import TypedDict
-from datetime import date
+from datetime import date, datetime
 
 class UserAuthDTO(TypedDict):
     mail: str
@@ -20,7 +20,8 @@ class UserResponseDTO(TypedDict):
     mail: str
     password: str
     birth: date
-    created_at: str
+    updated_at: datetime
+    created_at: datetime
 
 class UserPasswordResponseDTO(TypedDict):
     password: str

@@ -36,6 +36,7 @@ class UserModel:
             "name": fields.String(),
             "mail": fields.String(),
             "birth": fields.Date(),
+            "updated_at": fields.DateTime(),
             "created_at": fields.DateTime()
         }
         return self.namespace.model("user_find_by_id", data_model)
