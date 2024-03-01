@@ -1,4 +1,5 @@
 from flask_restx import fields, Namespace
+from src.modules.book.dtos.book_dto import BookDTO, BookResponseDTO
 from typing import Any
 
 class BookModel:
@@ -6,7 +7,7 @@ class BookModel:
         self.namespace = namespace
 
     def save(self) -> Any:
-        data_model = {
+        data_model: BookDTO = {
             "title": fields.String(),
             "price": fields.Float(),
             "rate": fields.Integer(),
@@ -19,7 +20,7 @@ class BookModel:
         return self.namespace.model("book_find", self.find_by_id())
 
     def find_by_id(self) -> Any:
-        data_model = {
+        data_model: BookResponseDTO = {
             "id_": fields.String(),
             "title": fields.String(),
             "price": fields.Float(),

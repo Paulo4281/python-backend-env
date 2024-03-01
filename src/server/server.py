@@ -9,6 +9,7 @@ from os import getenv
 from dotenv import load_dotenv
 from src.docs.modules.book.category_docs import api as category_namespace
 from src.docs.modules.book.book_docs import api as book_namespace
+from src.docs.modules.book.author_docs import api as author_namespace
 from src.docs.modules.user.user_docs import api as user_namespace
 from flask_jwt_extended import JWTManager
 
@@ -75,6 +76,7 @@ api.add_namespace(user_namespace, path="/user")
     # Book Namespaces
 api.add_namespace(category_namespace, path="/book/category")
 api.add_namespace(book_namespace, path="/book")
+api.add_namespace(author_namespace, path="/author")
 
 # ------------------------------------------------------------------------------------------------------------------
 # API Init ------------------------------------------------------------------------------------------------------------------
