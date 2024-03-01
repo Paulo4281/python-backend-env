@@ -23,9 +23,8 @@ class BookRepository:
                 session.add(book)
 
             return book.to_dict()
-        except Exception as e:
+        except:
             session.rollback()
-            raise Exception(e)
         finally:
             session.close()
 

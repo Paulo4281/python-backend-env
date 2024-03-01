@@ -8,4 +8,4 @@ from flask_jwt_extended import jwt_required
 @jwt_required()
 @cross_origin()
 def save() -> HttpResponse:
-    pass
+    return AuthorController.save()
