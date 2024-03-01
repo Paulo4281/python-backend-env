@@ -15,3 +15,13 @@ class AuthorController:
             response = HttpResponse(body=service.save(req.body), status_code=200)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
+        return jsonify(response.body), response.status_code
+
+    @staticmethod
+    def find() -> HttpResponse:
+        try:
+            service = AuthorService()
+            response = HttpResponse(body=service.find(), status_code=200)
+        except Exception as e:
+            response = AppError(body=e, status_code=400).error
+        return jsonify(response.body), response.status_code

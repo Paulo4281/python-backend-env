@@ -6,3 +6,7 @@ class AuthorService:
     @staticmethod
     def save(data: AuthorDTO) -> AuthorResponseDTO:
         return AuthorRepository().save(data)
+    
+    @staticmethod
+    def find() -> List[AuthorResponseDTO]:
+        return AuthorRepository().find()

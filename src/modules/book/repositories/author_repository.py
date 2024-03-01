@@ -27,3 +27,20 @@ class AuthorRepository:
             session.rollback()
         finally:
             session.close()
+
+    @staticmethod
+    def find() -> List[AuthorResponseDTO]:
+        try:
+            with session.begin():
+                authors = session.query(Author)
+
+                authors_list = []
+
+                for author in authors:
+                    authors_list.append(author.to_dict())
+
+            return authors_list
+        except:
+            session.rollback()
+        finally:
+            session.close()

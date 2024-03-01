@@ -9,3 +9,9 @@ from flask_jwt_extended import jwt_required
 @cross_origin()
 def save() -> HttpResponse:
     return AuthorController.save()
+
+@author_routes.route("/", methods=["GET"])
+@jwt_required()
+@cross_origin()
+def find() -> HttpResponse:
+    return AuthorController.find()
