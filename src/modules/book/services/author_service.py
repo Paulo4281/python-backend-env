@@ -10,3 +10,7 @@ class AuthorService:
     @staticmethod
     def find() -> List[AuthorResponseDTO]:
         return AuthorRepository().find()
+    
+    @staticmethod
+    def find_by_id(id_: str) -> AuthorResponseDTO:
+        return AuthorRepository().find_by_id(id_)

@@ -15,3 +15,9 @@ def save() -> HttpResponse:
 @cross_origin()
 def find() -> HttpResponse:
     return AuthorController.find()
+
+@author_routes.route("/<id_>", methods=["GET"])
+@jwt_required()
+@cross_origin()
+def find_by_id(id_: str) -> HttpResponse:
+    return AuthorController().find_by_id(id_)

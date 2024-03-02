@@ -6,6 +6,7 @@ from datetime import datetime
 from typing import List
 
 class AuthorRepository:
+
     @staticmethod
     def save(data: AuthorDTO) -> AuthorResponseDTO:
         try:
@@ -40,6 +41,18 @@ class AuthorRepository:
                     authors_list.append(author.to_dict())
 
             return authors_list
+        except:
+            session.rollback()
+        finally:
+            session.close()
+
+    @staticmethod
+    def find_by_id(id_: str) -> AuthorResponseDTO:
+        try:
+            with session.begin():
+                author = session.query(Author).filter(Author.id_ == id_).first()
+
+                return author.to_dict()
         except:
             session.rollback()
         finally:
