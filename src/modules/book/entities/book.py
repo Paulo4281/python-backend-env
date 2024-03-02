@@ -7,16 +7,16 @@ from src.modules.user.entities.user import User
 
 class Book(Base):
 
-    __tablename__ = "tb_livro"
+    __tablename__ = "tb_book"
 
-    id_: Mapped[str] = mapped_column(primary_key=True, type_=String, name="id_livro")
-    title: Mapped[str] = mapped_column(type_=String, name="titulo_livro")
-    price: Mapped[float] = mapped_column(type_=DECIMAL, name="preco_livro")
-    rate: Mapped[int] = mapped_column(type_=INTEGER, name="avaliacao_livro")
-    category_id: Mapped[str] = mapped_column(ForeignKey("tb_categoria.id_categoria"), type_=String, name="id_categoria")
-    owner_id: Mapped[str] = mapped_column(ForeignKey("tb_usuario.id_usuario"), type_=String, name="id_usuario")
-    updated_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="atualizado_em")
-    created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="criado_em")
+    id_: Mapped[str] = mapped_column(primary_key=True, type_=String, name="id_book")
+    title: Mapped[str] = mapped_column(type_=String, name="title_book")
+    price: Mapped[float] = mapped_column(type_=DECIMAL, name="price_book")
+    rate: Mapped[int] = mapped_column(type_=INTEGER, name="rate_book")
+    category_id: Mapped[str] = mapped_column(ForeignKey("tb_categoria.id_categoria"), type_=String, name="id_category")
+    owner_id: Mapped[str] = mapped_column(ForeignKey("tb_usuario.id_usuario"), type_=String, name="id_user")
+    updated_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="updated_at")
+    created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="created_at")
 
     category: Mapped[Category] = relationship("Category", foreign_keys=[category_id])
     owner: Mapped[User] = relationship("User", foreign_keys=[owner_id])

@@ -5,15 +5,15 @@ from typing import Dict
 
 class Author(Base):
 
-    __tablename__ = "tb_autor"
+    __tablename__ = "tb_author"
 
-    id_: Mapped[str] = mapped_column(primary_key=True, type_=String, name="id_autor")
-    name: Mapped[str] = mapped_column(type_=String, name="nome_autor")
-    birth: Mapped[Date] = mapped_column(type_=DATE, name="dtnascimento_autor")
-    death: Mapped[Date] = mapped_column(type_=DATE, name="dtfalecimento_autor")
-    nationality: Mapped[Date] = mapped_column(type_=String, name="nacionalidade_autor")
-    updated_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="atualizado_em")
-    created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="criado_em")
+    id_: Mapped[str] = mapped_column(primary_key=True, type_=String, name="id_author")
+    name: Mapped[str] = mapped_column(type_=String, name="name_author")
+    birth: Mapped[Date] = mapped_column(type_=DATE, name="birth_author")
+    death: Mapped[Date] = mapped_column(type_=DATE, name="death_author")
+    nationality: Mapped[Date] = mapped_column(type_=String, name="nationality_author")
+    updated_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="updated_at")
+    created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="created_at")
 
     def to_dict(self) -> Dict:
         return {
