@@ -1,0 +1,8 @@
+body {
+    background-color: #3498db;
+    height: 100vh;
+}
+
+#form_container {
+    border-radius: 10px;
+}

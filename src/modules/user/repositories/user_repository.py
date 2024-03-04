@@ -17,13 +17,14 @@ class UserRepository:
                         mail = data["mail"],
                         password = hashpw(data["password"].encode("utf8"), gensalt()),
                         birth = data["birth"],
+                        updated_at = None,
                         created_at = datetime.now()
                 )
 
                 session.add(user)
 
             return user.to_dict()
-        except:
+        except Exception:
             session.rollback()
         finally:
             session.close()
@@ -48,7 +49,7 @@ class UserRepository:
     def find_by_id(id_: str) -> UserResponseDTO:
         try:
             with session.begin():
-                user = session.query(User).filter(User.id_==id_).first()
+                user = session.query(User).filter(User.id_ == id_).first()
 
             return user.to_dict()
         except:
@@ -60,7 +61,7 @@ class UserRepository:
     def find_by_mail(mail: str) -> UserResponseDTO:
         try:
             with session.begin():
-                user = session.query(User).filter(User.mail==mail).first()
+                user = session.query(User).filter(User.mail == mail).first()
 
             return user.to_dict()
         except:

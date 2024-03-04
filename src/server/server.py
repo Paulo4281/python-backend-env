@@ -2,6 +2,7 @@ from flask import Flask
 from src.routes.user_routes import user_routes
 from src.routes.book_routes import book_routes
 from src.routes.category_routes import category_routes
+from src.routes.view_routes import view_routes
 from flask_cors import CORS
 from flask_restx import Api
 from src.database.database_config import *
@@ -18,7 +19,7 @@ load_dotenv()
 # ------------------------------------------------------------------------------------------------------------------
 # App Server & Cors ------------------------------------------------------------------------------------------------------------------
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates", static_folder="../templates/assets")
 CORS(app, origins="*", send_wildcard=True)
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -27,6 +28,9 @@ CORS(app, origins="*", send_wildcard=True)
 
 # ------------------------------------------------------------------------------------------------------------------
 # Routes Blueprint ------------------------------------------------------------------------------------------------------------------
+
+    # View Routes
+app.register_blueprint(view_routes)
 
     # User Routes
 app.register_blueprint(user_routes)
@@ -46,6 +50,7 @@ app.config["CORS_HEADERS"] = getenv("APP_CORS_HEADERS")
 app.config["SECRET_KEY"] = getenv("APP_SECRET_KEY")
 app.config["RESTX_MASK_SWAGGER"] = False
 app.config["JWT_SECRET_KEY"] = getenv("TOKEN_SECRET")
+print(app.template_folder)
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
