@@ -19,7 +19,7 @@ class UserService:
                 "token": encode(payload={"sub": getenv("TOKEN_SUB"), "iat": datetime.now(tz=timezone.utc), "exp": datetime.now(tz=timezone.utc) + timedelta(days=1)}, key=getenv("TOKEN_SECRET"))
             }
         else:
-            raise Exception("E-mail ou senha incorretos.")
+            raise Exception("E-mail or password are incorrect.")
     
     @staticmethod
     def save(data: UserDTO) -> UserResponseDTO:
@@ -34,22 +34,22 @@ class UserService:
         user = UserRepository.find_by_id(id)
         if user:
             return user
-        raise Exception("Usuário não cadastrado.")
+        raise Exception("Not found.")
     
     
     @staticmethod
     def update(id_: str, data: UserUpdateDTO) -> None:
-        if UserService.find_by_id(id_):
-            UserRepository.update(id_, data)
+        UserService.find_by_id(id_)
+        UserRepository.update(id_, data)
 
     @staticmethod
     def delete(id_: str) -> None:
-        if UserService.find_by_id(id_):
-            UserRepository.delete(id_)
+        UserService.find_by_id(id_)
+        UserRepository.delete(id_)
 
     @staticmethod
     def __find_by_mail(mail: str) -> UserResponseDTO:
         user = UserRepository.find_by_mail(mail)
         if user:
             return user
-        raise Exception("E-mail não cadastrado.")
+        raise Exception("E-mail not found.")

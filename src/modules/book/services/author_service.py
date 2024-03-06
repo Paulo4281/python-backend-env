@@ -13,4 +13,17 @@ class AuthorService:
     
     @staticmethod
     def find_by_id(id_: str) -> AuthorResponseDTO:
-        return AuthorRepository().find_by_id(id_)
+        user = AuthorRepository().find_by_id(id_)
+        if user:
+            return user
+        raise Exception("Not found.")
+    
+    @staticmethod
+    def update(id_: str, data: AuthorUpdateDTO) -> None:
+        AuthorService().find_by_id(id_)
+        AuthorRepository().update(id_, data)
+
+    @staticmethod
+    def delete(id_: str) -> None:
+        AuthorService().find_by_id(id_)
+        AuthorRepository().delete(id_)

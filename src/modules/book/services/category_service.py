@@ -13,12 +13,17 @@ class CategoryService:
     
     @staticmethod
     def find_by_id(id_: str) -> CategoryResponseDTO:
-        return CategoryRepository.find_by_id(id_)
+        category = CategoryRepository.find_by_id(id_)
+        if category:
+            return category
+        raise Exception("Not found.")
     
     @staticmethod
     def update(id_: str, data: CategoryUpdateDTO) -> None:
-        return CategoryRepository.update(id_, data)
+        CategoryService().find_by_id(id_)
+        CategoryRepository.update(id_, data)
 
     @staticmethod
     def delete(id_: str) -> None:
-        return CategoryRepository.delete(id_)
+        CategoryService().find_by_id(id_)
+        CategoryRepository.delete(id_)

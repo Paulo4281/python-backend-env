@@ -13,12 +13,17 @@ class BookService:
     
     @staticmethod
     def find_by_id(id_: str) -> BookResponseDTO:
-        return BookRepository.find_by_id(id_)
+        book = BookRepository.find_by_id(id_)
+        if book:
+            return book
+        raise Exception("Not found.")
     
     @staticmethod
     def update(id_: str, data: BookUpdateDTO) -> None:
-        return BookRepository.update(id_, data)
+        BookService().find_by_id(id_)
+        BookRepository.update(id_, data)
     
     @staticmethod
     def delete(id_: str) -> None:
-        return BookRepository.delete(id_)
+        BookService().find_by_id(id_)
+        BookRepository.delete(id_)

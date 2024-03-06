@@ -21,3 +21,15 @@ def find() -> HttpResponse:
 @cross_origin()
 def find_by_id(id_: str) -> HttpResponse:
     return AuthorController().find_by_id(id_)
+
+@author_routes.route("/<id_>", methods=["PUT"])
+@jwt_required()
+@cross_origin()
+def update(id_: str) -> HttpResponse:
+    return AuthorController().update(id_)
+
+@author_routes.route("/<id_>", methods=["DELETE"])
+@jwt_required()
+@cross_origin()
+def delete(id_: str) -> HttpResponse:
+    return AuthorController().delete(id_)

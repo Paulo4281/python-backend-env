@@ -57,3 +57,23 @@ class AuthorRepository:
             session.rollback()
         finally:
             session.close()
+
+    @staticmethod
+    def update(id_: str, data: AuthorUpdateDTO) -> None:
+        try:
+            with session.begin():
+                session.query(Author).filter(Author.id_ == id_).update(data)
+        except:
+            session.rollback()
+        finally:
+            session.close()
+
+    @staticmethod
+    def delete(id_: str) -> None:
+        try:
+            with session.begin():
+                session.query(Author).filter(Author.id_ == id_).delete()
+        except:
+            session.rollback()
+        finally:
+            session.close()

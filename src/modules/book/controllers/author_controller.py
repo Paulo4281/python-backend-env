@@ -12,7 +12,7 @@ class AuthorController:
             req = HttpRequest(body=request.json)
             AuthorValidator().author_dto_validator(req)
             service = AuthorService()
-            response = HttpResponse(body=service.save(req.body), status_code=200)
+            response = HttpResponse(body=service.save(req.body), status_code=201)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
@@ -31,7 +31,28 @@ class AuthorController:
         try:
             req = HttpRequest(params=id_)
             service = AuthorService()
-            response = HttpResponse(body=service.find_by_id(id_), status_code=200)
+            response = HttpResponse(body=service.find_by_id(req.params), status_code=200)
+        except Exception as e:
+            response = AppError(body=e, status_code=400).error
+        return jsonify(response.body), response.status_code
+    
+    @staticmethod
+    def delete(id_: str) -> HttpResponse:
+        try:
+            req = HttpRequest(params=id_)
+            service = AuthorService()
+            response = HttpResponse(body=service.delete(req.params), status_code=204)
+        except Exception as e:
+            response = AppError(body=e, status_code=400).error
+        return jsonify(response.body), response.status_code
+    
+    @staticmethod
+    def update(id_: str) -> HttpResponse:
+        try:
+            req = HttpRequest(params=id_, body=request.json)
+            AuthorValidator().author_dto_validator(req)
+            service = AuthorService()
+            response = HttpResponse(body=service.update(req.params, req.body), status_code=204)
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
