@@ -1,33 +1,28 @@
 function auth(event) {
-
-    const BASE_URL = "http://localhost:8080"
-
     event.preventDefault();
 
     const mail = $("#input_mail").val();
     const password = $("#input_password").val();
 
     if (!mail || !password) {
+        createModal("Please insert valid credentials.")
         return false;
     }
 
-    sendAuth()
-
+    const login_button = $("#btn_login");
+    
     async function sendAuth() {
-        await axios.post(`${BASE_URL}/user/auth`, {
+        login_button.append(loader("text-light"))
+        await axios.post(`${ENV["BASE_URL"]}/user/auth`, {
             mail,
             password
         }).then((response) => {
-            console.log(response)
+            loader(null, true)
         }).catch((error) => {
-            console.error(error)
-            $("#auth_alert").remove()
-            $("#form_container").prepend(
-                $("<div>").addClass("alert alert-danger alert-dismissible fade show").attr("id", "auth_alert")
-                .append("<strong>")
-                .text(error.response.data.message)
-            )
+            loader(null, true)
+            createModal(`Ops. <strong>${error.response.data.message}</strong>`)
         })
     }
-
+        
+    sendAuth();
 }

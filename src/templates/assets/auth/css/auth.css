@@ -1,6 +1,9 @@
 body {
     background-color: #3498db;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #form_container {
