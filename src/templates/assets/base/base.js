@@ -2,15 +2,11 @@ const ENV = {
     "BASE_URL": "http://localhost:8080"
 }
 
-function loader(color="text-primary", remove=false) {
+function createSpinner(color="text-primary", id_="login_button_spinner") {
 
-    if (remove) {
-        console.log("NEED TO REMOVE THE SPINNER.")
-    } else {
-        const loader = $("<div>").addClass(`spinner-border spinner-border-sm ${color}`)
+    const loader = $("<div>").addClass(`spinner-border spinner-border-sm ${color}`).attr("id", id_)
         
-        return loader;
-    }
+    return loader;
 
 }
 

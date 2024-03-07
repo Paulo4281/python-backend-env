@@ -12,14 +12,14 @@ function auth(event) {
     const login_button = $("#btn_login");
     
     async function sendAuth() {
-        login_button.append(loader("text-light"))
+        login_button.append(createSpinner("text-light"));
         await axios.post(`${ENV["BASE_URL"]}/user/auth`, {
             mail,
             password
         }).then((response) => {
-            loader(null, true)
+            $("#login_button_spinner").remove();
         }).catch((error) => {
-            loader(null, true)
+            $("#login_button_spinner").remove();
             createModal(`Ops. <strong>${error.response.data.message}</strong>`)
         })
     }
