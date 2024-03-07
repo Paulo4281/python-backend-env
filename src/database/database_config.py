@@ -1,11 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
-import os
+from os import getenv
 
 load_dotenv()
 
-engine = create_engine(f"{os.getenv("ENGINE")}://{os.getenv("DATABASE_USER")}:@{os.getenv("DATABASE_HOST")}:{os.getenv("DATABASE_PORT")}/{os.getenv("DATABASE_NAME")}", echo=False)
+engine = create_engine(f"{getenv("ENGINE")}://{getenv("DATABASE_USER")}:@{getenv("DATABASE_HOST")}:{getenv("DATABASE_PORT")}/{getenv("DATABASE_NAME")}", echo=False)
 
 try:
     connection = engine.connect()
