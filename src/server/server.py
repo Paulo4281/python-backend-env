@@ -1,20 +1,11 @@
 from flask import Flask
-from src.routes.user_routes import user_routes
-from src.routes.book_routes import book_routes
-from src.routes.category_routes import category_routes
-from src.routes.view_routes import view_routes
-from src.routes.review_routes import review_routes
 from flask_cors import CORS
 from flask_restx import Api
 from src.database.database_config import *
 from os import getenv
 from dotenv import load_dotenv
-from src.docs.modules.book.category_docs import api as category_namespace
-from src.docs.modules.book.book_docs import api as book_namespace
-from src.docs.modules.book.author_docs import api as author_namespace
-from src.docs.modules.user.user_docs import api as user_namespace
-from src.docs.modules.book.review_docs import api as review_namespace
 from flask_jwt_extended import JWTManager
+from src.server.imports import *
 
 load_dotenv()
 
@@ -53,7 +44,6 @@ app.config["CORS_HEADERS"] = getenv("APP_CORS_HEADERS")
 app.config["SECRET_KEY"] = getenv("APP_SECRET_KEY")
 app.config["RESTX_MASK_SWAGGER"] = False
 app.config["JWT_SECRET_KEY"] = getenv("TOKEN_SECRET")
-print(app.template_folder)
 
 # ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------
