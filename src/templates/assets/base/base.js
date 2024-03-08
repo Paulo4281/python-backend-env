@@ -2,14 +2,18 @@ const ENV = {
     "BASE_URL": "http://localhost:8080"
 };
 
-ENV.ROUTES = {
+ROUTES = {
+    "USER": {
+        "USER": `${ENV.BASE_URL}/user`,
+        "AUTH": `${ENV.BASE_URL}/user/auth`
+    },
     "BOOK": {
         "BOOK": `${ENV.BASE_URL}/book`,
         "CATEGORY": `${ENV.BASE_URL}/book/category`,
         "AUTHOR": `${ENV.BASE_URL}/book/author`
     },
-    "USER": {
-        "USER": `${ENV.BASE_URL}/user`
+    "VIEWS": {
+        "DASH": `${ENV.BASE_URL}/dash`
     }
 };
 

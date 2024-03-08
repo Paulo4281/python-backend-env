@@ -13,7 +13,7 @@ function login(event) {
     
     async function sendAuth() {
         login_button.append(createSpinner("text-light"));
-        await axios.post(`${ENV["BASE_URL"]}/user/auth`, {
+        await axios.post(`${ROUTES["USER"]["AUTH"]}`, {
             mail,
             password
         }).then(async (response) => {
@@ -21,10 +21,10 @@ function login(event) {
             if (response.data.token) {
                 const token = response.data.token;
                 localStorage.setItem("token", token);
-                await axios.get(`${ENV["BASE_URL"]}/dash`, {
+                await axios.get(`${ROUTES["VIEWS"]["DASH"]}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-                }).then(() => {
-                    window.location.href = `${ENV["BASE_URL"]}/dash`;
+                }).then((response) => {
+                    window.location.href = `${ROUTES["VIEWS"]["DASH"]}`;
                 })
             }
         }).catch((error) => {
