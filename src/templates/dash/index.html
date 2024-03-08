@@ -1,0 +1,29 @@
+{% extends 'base_templates/base_template.html' %}
+
+{% block title %}
+    Dash
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='/base/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='/dash/js/dash.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/dash/css/dash.css') }}">
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block main %}
+
+    <div>
+        <h1>Library</h1>
+        <h2>Shop</h2>
+        <h3>Dashboard</h3>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

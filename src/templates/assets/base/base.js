@@ -1,6 +1,17 @@
 const ENV = {
     "BASE_URL": "http://localhost:8080"
-}
+};
+
+ENV.ROUTES = {
+    "BOOK": {
+        "BOOK": `${ENV.BASE_URL}/book`,
+        "CATEGORY": `${ENV.BASE_URL}/book/category`,
+        "AUTHOR": `${ENV.BASE_URL}/book/author`
+    },
+    "USER": {
+        "USER": `${ENV.BASE_URL}/user`
+    }
+};
 
 function createSpinner(color="text-primary", id_="login_button_spinner") {
 
@@ -28,6 +39,6 @@ function createModal(message) {
 
     modalContent.appendTo(modalDialog);
 
-    modal.modal("show");
+    return modal;
 
 };

@@ -1,12 +1,10 @@
 {% extends 'base_templates/base_template.html' %}
-    <title>
-        {% block title %}
-            Login
-        {% endblock %}
-    </title>
+    {% block title %}
+        Login
+    {% endblock %}
     {% block scripts %}
-        <script src="{{ url_for('static', filename='/auth/js/auth.js') }}"></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='/auth/css/auth.css') }}">
+        <script src="{{ url_for('static', filename='/login/js/login.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='/login/css/login.css') }}">
     {% endblock %}
 
     {% block header %}
@@ -24,7 +22,7 @@
                 <input type="password" class="form-control" id="input_password" placeholder="Password">
             </div>
             <div class="mb-3">
-                <button class="btn-md btn-primary" id="btn_login" onclick="auth(event)">
+                <button class="btn-md btn-primary" id="btn_login" onclick="login(event)">
                     <span class="fs-5 fw-bold">Login</span>
                 </button>
             </div>

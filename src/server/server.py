@@ -79,9 +79,9 @@ api = Api(
 api.add_namespace(user_namespace, path="/user")
 
     # Book Namespaces
-api.add_namespace(category_namespace, path="/book/category")
 api.add_namespace(book_namespace, path="/book")
-api.add_namespace(author_namespace, path="/author")
+api.add_namespace(category_namespace, path="/book/category")
+api.add_namespace(author_namespace, path="/book/author")
 
 # ------------------------------------------------------------------------------------------------------------------
 # API Init ------------------------------------------------------------------------------------------------------------------
