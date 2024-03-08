@@ -1,4 +1,4 @@
-from src.modules.book.dtos.author_dto import AuthorDTO, AuthorResponseDTO, AuthorUpdateDTO
+from src.modules.book.dtos.author_dto import AuthorDTO, AuthorResponseDTO
 from src.modules.book.repositories.author_repository import AuthorRepository
 from typing import List
 
@@ -17,11 +17,6 @@ class AuthorService:
         if user:
             return user
         raise Exception("Not found.")
-    
-    @staticmethod
-    def update(id_: str, data: AuthorUpdateDTO) -> None:
-        AuthorService().find_by_id(id_)
-        AuthorRepository().update(id_, data)
 
     @staticmethod
     def delete(id_: str) -> None:

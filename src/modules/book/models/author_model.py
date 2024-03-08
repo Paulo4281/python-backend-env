@@ -29,6 +29,3 @@ class AuthorModel:
             "created_at": fields.DateTime()
         }
         return self.namespace.model("author_find_by_id", data_model)
-    
-    def update(self) -> Any:
-        return self.namespace.model("author_update", self.save())

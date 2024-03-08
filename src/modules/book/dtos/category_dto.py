@@ -4,9 +4,8 @@ from datetime import datetime
 class CategoryDTO(TypedDict):
     name: str
 
-class CategoryResponseDTO(TypedDict):
+class CategoryResponseDTO(CategoryDTO):
     id_: str
-    name: str
     updated_at: datetime
     created_at: datetime
 

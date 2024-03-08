@@ -14,12 +14,8 @@ class UserDTO(TypedDict):
     password: str
     birth: date
 
-class UserResponseDTO(TypedDict):
+class UserResponseDTO(UserDTO):
     id_: str
-    name: str
-    mail: str
-    password: str
-    birth: date
     updated_at: datetime
     created_at: datetime
 

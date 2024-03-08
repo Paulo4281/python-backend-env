@@ -7,14 +7,7 @@ class AuthorDTO(TypedDict):
     death: str
     nationality: str
 
-class AuthorResponseDTO(TypedDict):
+class AuthorResponseDTO(AuthorDTO):
     id_: str
-    name: str
-    birth: str
-    death: str
-    nationality: str
     updated_at: datetime
     created_at: datetime
-
-class AuthorUpdateDTO(AuthorDTO):
-    pass

@@ -45,14 +45,3 @@ class AuthorController:
         except Exception as e:
             response = AppError(body=e, status_code=400).error
         return jsonify(response.body), response.status_code
-    
-    @staticmethod
-    def update(id_: str) -> HttpResponse:
-        try:
-            req = HttpRequest(params=id_, body=request.json)
-            AuthorValidator().author_dto_validator(req)
-            service = AuthorService()
-            response = HttpResponse(body=service.update(req.params, req.body), status_code=204)
-        except Exception as e:
-            response = AppError(body=e, status_code=400).error
-        return jsonify(response.body), response.status_code

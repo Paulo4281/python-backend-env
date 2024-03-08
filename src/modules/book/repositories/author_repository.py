@@ -1,6 +1,6 @@
 from src.modules.book.entities.author import Author
 from src.database.database_config import session
-from src.modules.book.dtos.author_dto import AuthorDTO, AuthorResponseDTO, AuthorUpdateDTO
+from src.modules.book.dtos.author_dto import AuthorDTO, AuthorResponseDTO
 from uuid import uuid4
 from datetime import datetime
 from typing import List
@@ -53,16 +53,6 @@ class AuthorRepository:
                 author = session.query(Author).filter(Author.id_ == id_).first()
 
                 return author.to_dict()
-        except:
-            session.rollback()
-        finally:
-            session.close()
-
-    @staticmethod
-    def update(id_: str, data: AuthorUpdateDTO) -> None:
-        try:
-            with session.begin():
-                session.query(Author).filter(Author.id_ == id_).update(data)
         except:
             session.rollback()
         finally:

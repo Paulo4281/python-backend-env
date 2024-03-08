@@ -8,13 +8,8 @@ class BookDTO(TypedDict):
     category_id: str
     owner_id: str
 
-class BookResponseDTO(TypedDict):
+class BookResponseDTO(BookDTO):
     id_: str
-    title: str
-    price: float
-    rate: int
-    category_id: str
-    owner_id: str
     updated_at: datetime
     created_at: datetime
 
