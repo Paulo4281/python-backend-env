@@ -12,9 +12,14 @@
 
 {% block header %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" id="dash_navbar">
     <div class="container-fluid">
-      <a class="navbar-brand fs-4" href="#">Brand</a>
+      <a class="navbar-brand fs-4" href="#"><i class="fa-solid fa-book">&nbsp;Py Library</i></a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -32,9 +37,85 @@
 
 {% block main %}
 
-    <div>
+    <!-- Books Section -->
+    <section>
+      <div class="container-fluid p-5 bg-primary">
+        <div>
+          <div class="text-center section_titles">
+            <h2>Books</h2>
+          </div>
+          <table class="table">
+            <thead class="text-center">
+              <tr class="text-white">
+                <th>Title</th>
+                <th>Price</th>
+                <th>Rate</th>
+                <th>Category</th>
+                <th>Owner</th>
+                <th>Created At</th>
+              </tr>
+            </thead>
+            <tbody id="books_tbody">
+  
+            </tbody>
+          </table>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn bg-light" onclick="addBook()">Add Book</button>
+        </div>
+      </div>
+    </section>
 
-    </div>
+    <!-- Authors Section -->
+    <section>
+      <div class="container-fluid p-5 bg-info">
+        <div>
+          <div class="text-center section_titles">
+            <h2>Authors</h2>
+          </div>
+          <table class="table">
+            <thead class="text-center">
+              <tr class="text-white">
+                <th>Name</th>
+                <th>Birth</th>
+                <th>Death</th>
+                <th>Nationality</th>
+              </tr>
+            </thead>
+            <tbody id="author_tbody">
+
+            </tbody>
+          </table>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-light">Add Author</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Section -->
+    <section>
+      <div class="container-fluid p-5 bg-primary">
+        <div>
+          <div class="text-center section_titles">
+            <h2>Categories</h2>
+          </div>
+          <table class="table">
+            <thead class="text-center">
+              <tr class="text-white">
+                <th>Name</th>
+              </tr>
+              <tbody id="category_tbody">
+                
+              </tbody>
+            </thead>
+          </table>
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-light">Add Category</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
 {% endblock %}
 

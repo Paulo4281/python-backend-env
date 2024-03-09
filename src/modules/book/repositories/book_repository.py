@@ -14,7 +14,6 @@ class BookRepository:
                     id_ = uuid4(),
                     title = data["title"],
                     price = data["price"],
-                    rate = data["rate"],
                     category_id = data["category_id"],
                     owner_id = data["owner_id"],
                     created_at = datetime.now()

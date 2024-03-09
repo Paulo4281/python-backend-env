@@ -4,7 +4,6 @@ from datetime import datetime
 class BookDTO(TypedDict):
     title: str
     price: float
-    rate: int
     category_id: str
     owner_id: str
 

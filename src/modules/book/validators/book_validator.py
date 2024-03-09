@@ -8,7 +8,6 @@ class BookValidator:
         book_dto_validator = Validator({
             "title": {"type": "string", "required": True, "empty": False},
             "price": {"type": "float", "required": True, "empty": False, "min": 0.01},
-            "rate": {"type": "integer", "required": False, "empty": False, "max": 5},
             "category_id": {"type": "string", "required": True, "empty": False},
             "owner_id": {"type": "string", "required": True, "empty": False}
         })

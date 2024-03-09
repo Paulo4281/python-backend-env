@@ -23,7 +23,7 @@ function login(event) {
                 localStorage.setItem("token", token);
                 await axios.get(`${ROUTES["VIEWS"]["DASH"]}`, {
                     headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
-                }).then((response) => {
+                }).then(() => {
                     window.location.href = `${ROUTES["VIEWS"]["DASH"]}`;
                 })
             }

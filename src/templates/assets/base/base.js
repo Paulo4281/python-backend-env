@@ -45,4 +45,37 @@ function createModal(message) {
 
     return modal;
 
-};
+}
+
+function createFormModal(title, inputs, inputTypes=[], placeHolders=[], ids=[]) {
+
+    const formModal = $("<div>").addClass("modal fade").attr("tabindex", "-1").attr("aria-hidden", "true")
+    const modalDialog = $("<div>").addClass("modal-dialog")
+    modalDialog.appendTo(formModal)
+
+    const modalContent = $("<div>").addClass("modal-content")
+    
+    const modalHeader = $("<div>").addClass("modal-header")
+    const modalTitle = $("<div>").addClass("modal-title").append($("<h2>").text(title))
+    modalTitle.appendTo(modalHeader)
+    modalHeader.appendTo(modalContent)
+
+    const form = $("<div>").addClass("d-flex justify-content-center align-items-center")
+    form.appendTo(modalContent)
+    inputsArray = []
+
+    if (inputTypes.length === inputs) {
+        for (let i = 0; i < inputs.length; i++) {
+            inputsArray.push(
+                $("<input>").addClass("form-control").attr("id", ids[i]).attr("type", inputTypes[i]).attr("placeholder", placeHolders[i])
+            )
+        }
+    }
+
+    for (const input of inputsArray) {
+        input.appendTo(form)
+    }
+
+    return formModal
+
+}
