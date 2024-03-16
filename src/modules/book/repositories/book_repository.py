@@ -1,6 +1,10 @@
 from src.modules.book.entities.book import Book
+from src.modules.book.entities.category import Category
+from src.modules.book.entities.author import Author
+from src.modules.user.entities.user import User
 from src.database.database_config import session
 from src.modules.book.dtos.book_dto import BookDTO, BookResponseDTO, BookUpdateDTO
+from sqlalchemy.orm import joinedload
 from uuid import uuid4
 from datetime import datetime
 from typing import List
@@ -32,12 +36,16 @@ class BookRepository:
     def find() -> List[BookResponseDTO]:
         try:
             with session.begin():
-                books = session.query(Book)
+                books = session.query(Book, Category, Author, User).join(Category).join(Author).join(User).options(joinedload(Book.category), joinedload(Book.author), joinedload(Book.user))
 
                 books_list = []
 
-                for book in books:
-                    books_list.append(book.to_dict())
+                for book, category, author, user in books:
+                    book_dict = book.to_dict()
+                    book_dict["category"] = category.to_dict()
+                    book_dict["author"] = author.to_dict()
+                    book_dict["user"] = user.to_dict()
+                    books_list.append(book_dict)
             return books_list
         except:
             session.rollback()

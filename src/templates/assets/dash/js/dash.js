@@ -1,3 +1,20 @@
+$(document).ready(async () => {
+
+    // Load Books
+    const books = await router("GET", ROUTES["BOOK"]["BOOK"])
+
+    console.log(books)
+
+    const books_tbody = $("#books_tbody")
+
+    books.forEach((book) => {
+        const tr = $("<tr>").addClass("text-center").appendTo(books_tbody)
+        $("<td>").text(book.title).appendTo(tr)
+        $("<td>").text(book.price).appendTo(tr)
+    })
+
+})
+
 // Book
 async function addBook() {
 
