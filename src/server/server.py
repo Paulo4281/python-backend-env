@@ -32,6 +32,7 @@ app.register_blueprint(user_routes)
 app.register_blueprint(book_routes)
 app.register_blueprint(category_routes)
 app.register_blueprint(review_routes)
+app.register_blueprint(author_routes)
 
 # End Routes Blueprint ------------------------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------------------------

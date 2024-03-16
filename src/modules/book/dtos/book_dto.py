@@ -6,6 +6,7 @@ class BookDTO(TypedDict):
     price: float
     category_id: str
     owner_id: str
+    author_id: str
 
 class BookResponseDTO(BookDTO):
     id_: str

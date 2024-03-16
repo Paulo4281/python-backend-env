@@ -92,6 +92,7 @@ function createFormModal(title, inputTypes=[], placeHolders=[], options=[], valu
                 inputsArray.push(
                     select
                 )
+                selectIndex++
             } else {
                 inputsArray.push(
                     $("<input>").addClass("form-control mb-2").attr("id", ids[i]).attr("type", inputTypes[i]).attr("placeholder", placeHolders[i])
