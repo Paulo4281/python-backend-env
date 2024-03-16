@@ -14,13 +14,13 @@ class Book(Base):
     title: Mapped[str] = mapped_column(type_=String, name="title_book")
     price: Mapped[float] = mapped_column(type_=DECIMAL, name="price_book")
     category_id: Mapped[str] = mapped_column(ForeignKey("tb_category.id_category"), type_=String, name="id_category")
-    owner_id: Mapped[str] = mapped_column(ForeignKey("tb_user.id_user"), type_=String, name="id_user")
+    user_id: Mapped[str] = mapped_column(ForeignKey("tb_user.id_user"), type_=String, name="id_user")
     author_id: Mapped[str] = mapped_column(ForeignKey("tb_author.id_author"), type_=String, name="id_author")
     updated_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="updated_at")
     created_at: Mapped[DateTime] = mapped_column(type_=DATETIME, name="created_at")
 
     category: Mapped[Category] = relationship("Category", foreign_keys=[category_id])
-    owner: Mapped[User] = relationship("User", foreign_keys=[owner_id])
+    user: Mapped[User] = relationship("User", foreign_keys=[user_id])
     author: Mapped[Author] = relationship("Author", foreign_keys=[author_id])
 
     def to_dict(self) -> Dict:
@@ -29,7 +29,7 @@ class Book(Base):
             "title": self.title,
             "price": float(self.price),
             "category_id": self.category_id,
-            "owner_id": self.owner_id,
+            "user_id": self.user_id,
             "updated_at": self.updated_at,
             "created_at": self.created_at,
         }

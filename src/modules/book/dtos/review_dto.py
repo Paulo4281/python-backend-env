@@ -4,11 +4,12 @@ from datetime import datetime
 class ReviewDTO(TypedDict):
     rate: int
     review: str
-    id_user: str
-    id_book: str
+    user_id: str
+    book_id: str
 
 class ReviewResponseDTO(ReviewDTO):
     id_: str
+    updated_at: datetime
     created_at: datetime
 
 class ReviewUpdateDTO(ReviewDTO):

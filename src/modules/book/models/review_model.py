@@ -10,8 +10,8 @@ class ReviewModel:
         data_model: ReviewDTO = {
             "rate": fields.Integer(),
             "review": fields.String(),
-            "id_book": fields.String(),
-            "id_user": fields.String()
+            "book_id": fields.String(),
+            "user_id": fields.String()
         }
         return self.namespace.model("review_save", data_model)
     
@@ -23,8 +23,9 @@ class ReviewModel:
             "id_": fields.String(),
             "rate": fields.Integer(),
             "review": fields.String(),
-            "id_book": fields.String(),
-            "id_user": fields.String(),
+            "book_id": fields.String(),
+            "user_id": fields.String(),
+            "updated_at": fields.DateTime(),
             "created_at": fields.DateTime()
         }
         return self.namespace.model("review_find_by_id", data_model)

@@ -9,7 +9,7 @@ class BookValidator:
             "title": {"type": "string", "required": True, "empty": False},
             "price": {"type": "float", "required": True, "empty": False, "min": 0.01},
             "category_id": {"type": "string", "required": True, "empty": False},
-            "owner_id": {"type": "string", "required": True, "empty": False},
+            "user_id": {"type": "string", "required": True, "empty": False},
             "author_id": {"type": "string", "required": True, "empty": False}
         })
         try:

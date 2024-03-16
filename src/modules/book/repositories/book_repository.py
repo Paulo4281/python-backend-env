@@ -15,7 +15,7 @@ class BookRepository:
                     title = data["title"],
                     price = data["price"],
                     category_id = data["category_id"],
-                    owner_id = data["owner_id"],
+                    user_id = data["user_id"],
                     author_id = data["author_id"],
                     created_at = datetime.now()
                 )

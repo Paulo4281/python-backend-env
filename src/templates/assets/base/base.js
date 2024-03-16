@@ -11,7 +11,8 @@ const ROUTES = {
     "BOOK": {
         "BOOK": `${ENV.BASE_URL}/book`,
         "CATEGORY": `${ENV.BASE_URL}/book/category`,
-        "AUTHOR": `${ENV.BASE_URL}/book/author`
+        "AUTHOR": `${ENV.BASE_URL}/book/author`,
+        "REVIEW": `${ENV.BASE_URL}/book/review`
     },
     "VIEWS": {
         "DASH": `${ENV.BASE_URL}/dash`
@@ -61,6 +62,9 @@ function createModal(message) {
 
 function createFormModal(title, inputTypes=[], placeHolders=[], options=[], values=[], ids=[], buttonAction, buttonId) {
 
+    console.log(options)
+    console.log(values)
+
     const formModal = $("<div>").addClass("modal fade").attr("tabindex", "-1").attr("aria-hidden", "true")
     const modalDialog = $("<div>").addClass("modal-dialog")
     modalDialog.appendTo(formModal)
@@ -89,9 +93,7 @@ function createFormModal(title, inputTypes=[], placeHolders=[], options=[], valu
                 options[selectIndex].forEach((option, index) => {
                     $("<option>").text(option).val(values[selectIndex][index]).appendTo(select)
                 })
-                inputsArray.push(
-                    select
-                )
+                inputsArray.push(select)
                 selectIndex++
             } else {
                 inputsArray.push(

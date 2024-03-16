@@ -11,7 +11,7 @@ class BookModel:
             "title": fields.String(),
             "price": fields.Float(),
             "category_id": fields.String(),
-            "owner_id": fields.String(),
+            "user_id": fields.String(),
             "author_id": fields.String()
         }
         return self.namespace.model("book_save", data_model)
@@ -25,7 +25,7 @@ class BookModel:
             "title": fields.String(),
             "price": fields.Float(),
             "category_id": fields.String(),
-            "owner_id": fields.String(),
+            "user_id": fields.String(),
             "author_id": fields.String(),
             "updated_at": fields.DateTime(),
             "created_at": fields.DateTime()
