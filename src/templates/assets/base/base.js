@@ -1,8 +1,9 @@
 const ENV = {
-    "BASE_URL": "http://localhost:8080"
+    "BASE_URL": "http://localhost:8080",
+    "TOKEN": localStorage.getItem("token")
 };
 
-ROUTES = {
+const ROUTES = {
     "USER": {
         "USER": `${ENV.BASE_URL}/user`,
         "AUTH": `${ENV.BASE_URL}/user/auth`
@@ -17,7 +18,18 @@ ROUTES = {
     }
 };
 
-function createSpinner(color="text-primary", id_="login_button_spinner") {
+function getUserId() {
+
+    const token = localStorage.getItem("token")
+
+    const [, payloadBase64] = token.split('.')
+    const payloadDecoded = atob(payloadBase64)
+    const payloadJSON = JSON.parse(payloadDecoded)
+    return payloadJSON.userId
+
+}
+
+function createSpinner(color="text-primary", id_="button_spinner") {
 
     const loader = $("<div>").addClass(`spinner-border spinner-border-sm ${color}`).attr("id", id_)
         
@@ -47,34 +59,52 @@ function createModal(message) {
 
 }
 
-function createFormModal(title, inputs, inputTypes=[], placeHolders=[], ids=[]) {
+function createFormModal(title, inputTypes=[], placeHolders=[], options=[], values=[], ids=[], buttonAction, buttonId) {
 
     const formModal = $("<div>").addClass("modal fade").attr("tabindex", "-1").attr("aria-hidden", "true")
     const modalDialog = $("<div>").addClass("modal-dialog")
     modalDialog.appendTo(formModal)
 
-    const modalContent = $("<div>").addClass("modal-content")
+    const modalContent = $("<div>").addClass("modal-content p-2")
     
     const modalHeader = $("<div>").addClass("modal-header")
     const modalTitle = $("<div>").addClass("modal-title").append($("<h2>").text(title))
     modalTitle.appendTo(modalHeader)
     modalHeader.appendTo(modalContent)
 
-    const form = $("<div>").addClass("d-flex justify-content-center align-items-center")
+    const form = $("<div>").addClass("form")
+    const buttonDiv = $("<div>").addClass("d-flex justify-content-end")
+    const button = $("<button>").addClass("btn btn-success").text(title).attr("onclick", buttonAction).attr("id", buttonId)
+    button.appendTo(buttonDiv)
     form.appendTo(modalContent)
+    modalContent.appendTo(modalDialog)
+
     inputsArray = []
 
-    if (inputTypes.length === inputs) {
-        for (let i = 0; i < inputs.length; i++) {
-            inputsArray.push(
-                $("<input>").addClass("form-control").attr("id", ids[i]).attr("type", inputTypes[i]).attr("placeholder", placeHolders[i])
-            )
+    if (inputTypes.length) {
+        selectIndex = 0
+        for (let i = 0; i < inputTypes.length; i++) {
+            if (inputTypes[i] === "select") {
+                const select = $("<select>").addClass("form-select mb-2").attr("id", ids[i])
+                options[selectIndex].forEach((option, index) => {
+                    $("<option>").text(option).val(values[selectIndex][index]).appendTo(select)
+                })
+                inputsArray.push(
+                    select
+                )
+            } else {
+                inputsArray.push(
+                    $("<input>").addClass("form-control mb-2").attr("id", ids[i]).attr("type", inputTypes[i]).attr("placeholder", placeHolders[i])
+                )
+            }
         }
     }
 
     for (const input of inputsArray) {
         input.appendTo(form)
     }
+
+    buttonDiv.appendTo(form)
 
     return formModal
 

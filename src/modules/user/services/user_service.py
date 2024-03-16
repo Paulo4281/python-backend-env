@@ -16,7 +16,7 @@ class UserService:
         user_password = UserRepository.get_user_password(user["id_"])
         if checkpw(bytes(data["password"], "utf8"), bytes(user_password, "utf8")):
             return {
-                "token": encode(payload={"sub": getenv("TOKEN_SUB"), "iat": datetime.now(tz=timezone.utc), "exp": (datetime.now(tz=timezone.utc) + timedelta(days=1))}, key=getenv("TOKEN_SECRET"), algorithm="HS256")
+                "token": encode(payload={"userId": user["id_"], "sub": getenv("TOKEN_SUB"), "iat": datetime.now(tz=timezone.utc), "exp": (datetime.now(tz=timezone.utc) + timedelta(days=1))}, key=getenv("TOKEN_SECRET"), algorithm="HS256")
             }
         else:
             raise Exception("E-mail or password are incorrect.")

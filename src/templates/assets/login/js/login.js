@@ -17,7 +17,7 @@ function login(event) {
             mail,
             password
         }).then(async (response) => {
-            $("#login_button_spinner").remove();
+            $("#button_spinner").remove();
             if (response.data.token) {
                 const token = response.data.token;
                 localStorage.setItem("token", token);
@@ -28,7 +28,7 @@ function login(event) {
                 })
             }
         }).catch((error) => {
-            $("#login_button_spinner").remove();
+            $("#button_spinner").remove();
             if (error.response.data) {
                 createModal(`Ops. <strong>${error.response.data.message}</strong>`).modal("show")
             } else {
