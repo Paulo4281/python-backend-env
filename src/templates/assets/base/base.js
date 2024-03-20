@@ -62,9 +62,6 @@ function createModal(message) {
 
 function createFormModal(title, inputTypes=[], placeHolders=[], options=[], values=[], ids=[], buttonAction, buttonId) {
 
-    console.log(options)
-    console.log(values)
-
     const formModal = $("<div>").addClass("modal fade").attr("tabindex", "-1").attr("aria-hidden", "true")
     const modalDialog = $("<div>").addClass("modal-dialog")
     modalDialog.appendTo(formModal)

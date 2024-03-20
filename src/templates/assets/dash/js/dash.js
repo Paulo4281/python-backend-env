@@ -1,17 +1,84 @@
 $(document).ready(async () => {
 
     // Load Books
+
     const books = await router("GET", ROUTES["BOOK"]["BOOK"])
+    
+    if (books) {
+        const books_tbody = $("#books_tbody")
+        books.forEach((book) => {
+            const tr = $("<tr>").addClass("text-center").appendTo(books_tbody)
+            $("<td>").text(book.title).appendTo(tr)
+            $("<td>").text(`${parseFloat(book.price)}$`).appendTo(tr)
+            $("<td>").text("").appendTo(tr)
+            $("<td>").text(book.category.name).appendTo(tr)
+            $("<td>").text(book.user.name).appendTo(tr)
+            $("<td>").text(book.author.name).appendTo(tr)
+            $("<td>").text(new Date(book.created_at).toLocaleDateString()).appendTo(tr)
+        })
+    }
 
-    console.log(books)
+    // Load Authors
 
-    const books_tbody = $("#books_tbody")
+    const authors = await router("GET", ROUTES["BOOK"]["AUTHOR"])
 
-    books.forEach((book) => {
-        const tr = $("<tr>").addClass("text-center").appendTo(books_tbody)
-        $("<td>").text(book.title).appendTo(tr)
-        $("<td>").text(book.price).appendTo(tr)
-    })
+    if (authors) {
+        const authors_tbody = $("#authors_tbody")
+        authors.forEach((author) => {
+            const tr = $("<tr>").addClass("text-center").appendTo(authors_tbody)
+            $("<td>").text(author.name).appendTo(tr)
+            $("<td>").text(new Date(author.birth).toLocaleDateString()).appendTo(tr)
+            $("<td>").text(new Date(author.death).toLocaleDateString()).appendTo(tr)
+            $("<td>").text(author.nationality).appendTo(tr)
+            $("<td>").text(new Date(author.created_at).toLocaleDateString()).appendTo(tr)
+        })
+    }
+
+    // Load Categories
+
+    const categories = await router("GET", ROUTES["BOOK"]["CATEGORY"])
+    
+    if (categories) {
+        const category_tbody = $("#category_tbody")
+        categories.forEach((category) => {
+            const tr = $("<tr>").addClass("text-center").appendTo(category_tbody)
+            $("<td>").text(category.name).appendTo(tr)
+            $("<td>").text(new Date(category.created_at).toLocaleDateString()).appendTo(tr)
+        })
+    }
+
+
+    // Load Reviews
+
+    const reviews = await router("GET", ROUTES["BOOK"]["REVIEW"])
+
+    if (reviews) {
+        const reviews_tbody = $("#reviews_tbody")
+        reviews.forEach((review) => {
+            const tr = $("<tr>").addClass("text-center").appendTo(reviews_tbody)
+            $("<td>").text(review.rate).appendTo(tr)
+            $("<td>").text(review.review).appendTo(tr)
+            $("<td>").text(review.user.name).appendTo(tr)
+            $("<td>").text(review.book.title).appendTo(tr)
+            $("<td>").text(new Date(review.created_at).toLocaleDateString()).appendTo(tr)
+        })
+    }
+
+    // Load Users
+
+    const users = await router("GET", ROUTES["USER"]["USER"])
+
+    if (users) {
+        const users_tbody = $("#users_tbody")
+        users.forEach((user) => {
+            const tr = $("<tr>").addClass("text-center").appendTo(users_tbody)
+            $("<td>").text(user.name).appendTo(tr)
+            $("<td>").text(user.mail).appendTo(tr)
+            $("<td>").text(user.birth).appendTo(tr)
+            $("<td>").text(new Date(user.created_at).toLocaleDateString()).appendTo(tr)
+        })
+    }
+
 
 })
 

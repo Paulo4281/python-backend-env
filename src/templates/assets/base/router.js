@@ -6,7 +6,6 @@ async function router(method, route, data={}) {
             headers: { Authorization: `Bearer ${token}` }
         })
     } else if (method === "POST") {
-        console.log(data)
         response = await axios.post(route, data, {
             headers: { Authorization: `Bearer ${token}` }
         })
