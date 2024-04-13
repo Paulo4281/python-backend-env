@@ -22,7 +22,7 @@ class Review(Base):
 
     def to_dict(self) -> Dict:
         return {
-            "id_": self.id,
+            "id_": self.id_,
             "rate": self.rate,
             "review": self.review,
             "book_id": self.book_id,
